@@ -4,25 +4,31 @@
 
 local map = vim.keymap.set
 
-do -- Terminal sider, for coding agents
-  map("n", "<leader>tc", function()
-    Snacks.terminal("codex", {
-      cwd = LazyVim.root(),
-      interactive = true,
-      win = {
-        width = 0.3,
-        position = "right",
-      },
-    })
-  end, { desc = "Open Codex" })
+do -- habbits
+  map({ 'n', 'i', 'x', 'v' }, '<D-s>', '<Cmd>w<CR><Esc>', { desc = 'Save file' })
+end
 
-  map({ "n", "i", "t", "v" }, "<D-r>", function()
+do -- Terminal sider, for coding agents
+  ---@type snacks.win.Config
+  local win_option = {
+    width = 0.3,
+    position = 'right',
+  }
+
+  map('n', '<leader>tc', function()
+    Snacks.terminal('codex', {
+      interactive = true,
+      win = win_option,
+    })
+  end, { desc = 'Open Codex' })
+
+  map({ 'n', 'i', 't', 'v' }, '<D-r>', function()
     local terminals = Snacks.terminal.list()
     local hasRight = false
 
     for i = #terminals, 1, -1 do
       local term = terminals[i]
-      if term.opts.position == "right" then
+      if term.opts.position == 'right' then
         term:toggle()
         hasRight = true
         break
@@ -31,12 +37,8 @@ do -- Terminal sider, for coding agents
 
     if not hasRight then
       Snacks.terminal(nil, {
-        cwd = LazyVim.root(),
         interactive = true,
-        win = {
-          width = 0.3,
-          position = "right",
-        },
+        win = win_option,
       })
     end
   end)
