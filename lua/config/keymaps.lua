@@ -37,6 +37,7 @@ do -- Terminal sider, for coding agents
 
     if not hasRight then
       Snacks.terminal(nil, {
+        cwd = vim.fn.expand('%:p:h'),
         interactive = true,
         win = win_option,
       })
