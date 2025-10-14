@@ -11,6 +11,12 @@ return {
         },
       },
     },
+    animate = {
+      easing = 'inOutQuart',
+      duration = {
+        total = 200,
+      },
+    },
   },
   keys = {
     {
