@@ -1,17 +1,25 @@
+---@type LazySpec
 return {
-  "folke/snacks.nvim",
+  'folke/snacks.nvim',
   ---@type snacks.config
   opts = {
-    animate = {
-      duration = 10,
-    },
     picker = {
       previewers = {
         diff = {
           builtin = false,
-          cmd = { "diff-so-fancy" },
+          cmd = { 'diff-so-fancy' },
         },
       },
+    },
+  },
+  keys = {
+    {
+      '<C-/>',
+      function()
+        Snacks.terminal()
+      end,
+      desc = 'Terminal (cwd)',
+      mode = { 'n', 't' },
     },
   },
 }

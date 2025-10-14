@@ -7,14 +7,6 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'help',
-  callback = function()
-    vim.w.winnr = vim.api.nvim_win_get_number(0)
-    vim.cmd('wincmd L')
-  end,
-})
-
 do -- sync cwd with shell (OSC 7)
   vim.api.nvim_create_autocmd('DirChanged', {
     pattern = { 'global', 'tabpage' },

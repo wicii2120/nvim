@@ -1,26 +1,29 @@
 return {
   {
-    "catppuccin/nvim",
+    'catppuccin/nvim',
     lazy = true,
-    name = "catppuccin",
+    name = 'catppuccin',
     opts = {
       background = {
-        light = "latte",
-        dark = "mocha",
+        light = 'latte',
+        dark = 'mocha',
+      },
+      float = {
+        rounded = true,
       },
       lsp_styles = {
         underlines = {
-          errors = { "undercurl" },
-          hints = { "undercurl" },
-          warnings = { "undercurl" },
-          information = { "undercurl" },
+          errors = { 'undercurl' },
+          hints = { 'undercurl' },
+          warnings = { 'undercurl' },
+          information = { 'undercurl' },
         },
       },
       auto_integrations = true,
       highlight_overrides = {
         all = function(colors)
           return {
-            ["@lsp.type.component.vue"] = { fg = colors.pink },
+            ['@lsp.type.component.vue'] = { fg = colors.pink },
           }
         end,
       },
@@ -30,11 +33,11 @@ return {
     },
     specs = {
       {
-        "akinsho/bufferline.nvim",
+        'akinsho/bufferline.nvim',
         optional = true,
         opts = function(_, opts)
-          if (vim.g.colors_name or ""):find("catppuccin") then
-            opts.highlights = require("catppuccin.special.bufferline").get_theme()
+          if (vim.g.colors_name or ''):find('catppuccin') then
+            opts.highlights = require('catppuccin.special.bufferline').get_theme()
           end
         end,
       },
@@ -42,9 +45,9 @@ return {
   },
 
   {
-    "LazyVim/LazyVim",
+    'LazyVim/LazyVim',
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = 'catppuccin',
     },
   },
 }
