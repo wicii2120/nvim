@@ -5,25 +5,38 @@ return {
       'nvim-lua/plenary.nvim',
       'ravitemer/mcphub.nvim',
     },
-    opts = {
-      display = {
-        chat = {
-          window = {
-            width = 0.35,
+    opts = function()
+      return {
+        adapters = {
+          copilot = function()
+            return require('codecompanion.adapters').extend('copilot', {
+              schema = {
+                model = {
+                  default = 'gpt-5-codex',
+                },
+              },
+            })
+          end,
+        },
+        display = {
+          chat = {
+            window = {
+              width = 0.35,
+            },
           },
         },
-      },
-      extensions = {
-        mcphub = {
-          callback = 'mcphub.extensions.codecompanion',
-          opts = {
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true,
+        extensions = {
+          mcphub = {
+            callback = 'mcphub.extensions.codecompanion',
+            opts = {
+              make_vars = true,
+              make_slash_commands = true,
+              show_result_in_chat = true,
+            },
           },
         },
-      },
-    },
+      }
+    end,
     ---@type LazyKeysSpec[]
     keys = {
       {
@@ -61,11 +74,6 @@ return {
       config = '/Users/vicii/Library/Application Support/Code/User/mcp.json',
       port = 37373,
     },
-  },
-
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    ft = { 'markdown', 'codecompanion' },
   },
 
   {
