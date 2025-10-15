@@ -3,6 +3,7 @@ return {
   opts = {
     file = {
       ['package.json'] = { glyph = '' },
+      ['vite.config.ts'] = { glyph = '', hl = 'MiniIconsPurple' },
     },
   },
 }
