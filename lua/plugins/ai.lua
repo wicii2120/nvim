@@ -7,6 +7,14 @@ return {
     },
     opts = function()
       return {
+        strategies = {
+          inline = {
+            adapter = {
+              name = 'copilot',
+              model = 'grok-code-fast-1',
+            },
+          },
+        },
         adapters = {
           copilot = function()
             return require('codecompanion.adapters').extend('copilot', {
