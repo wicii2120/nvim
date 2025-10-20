@@ -1,13 +1,21 @@
 return {
-  "folke/which-key.nvim",
+  'folke/which-key.nvim',
+  opts = {
+    spec = {
+      {
+        mode = { 'n', 'v' },
+        { '<leader>a', group = 'AI', icon = '󰫮' },
+      },
+    },
+  },
   keys = {
     {
-      "<C-/>",
-      mode = "i",
+      '<C-/>',
+      mode = 'i',
       function()
-        require("which-key").show({ global = false })
+        require('which-key').show({ global = false })
       end,
-      desc = "Buffer Local Keymaps (which-key)",
+      desc = 'Buffer Local Keymaps (which-key)',
     },
   },
 }

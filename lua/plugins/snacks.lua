@@ -1,13 +1,16 @@
----@type LazySpec
 return {
   'folke/snacks.nvim',
   ---@type snacks.config
   opts = {
     picker = {
+      ---@type snacks.picker.previewers.Config
       previewers = {
         diff = {
           builtin = false,
-          cmd = { 'diff-so-fancy' },
+          cmd = { 'delta' },
+        },
+        git = {
+          builtin = false,
         },
       },
     },

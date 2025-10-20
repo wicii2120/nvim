@@ -1,4 +1,9 @@
 return {
   'johmsalas/text-case.nvim',
-  opts = {},
+  opts = {
+    prefix = '<leader>t',
+  },
+  keys = {
+    '<leader>t',
+  },
 }

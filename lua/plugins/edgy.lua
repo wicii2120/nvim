@@ -1,7 +1,12 @@
+---@module 'edgy'
 return {
   'folke/edgy.nvim',
   opts = function(_, opts)
-    ---@type Edgy.Pos
+    opts.animate = {
+      enabled = false,
+    }
+
+    ---@type Edgy.Edgebar
     local bottom = opts.bottom
     for i, v in ipairs(bottom) do
       if type(v) == 'table' and v.ft == 'help' then
