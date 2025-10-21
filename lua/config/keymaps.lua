@@ -17,7 +17,7 @@ do -- habbits
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'grug-far',
     callback = function()
-      map('n', 'q', '<Nop>', { buffer = true })
+      map('n', 'q', '<Nop>', { buffer = true, noremap = true })
     end,
   })
 end

@@ -6,11 +6,12 @@ return {
       enabled = false,
     }
 
-    ---@type Edgy.Edgebar
-    local bottom = opts.bottom
-    for i, v in ipairs(bottom) do
-      if type(v) == 'table' and v.ft == 'help' then
-        table.remove(bottom, i)
+    for _, pos in ipairs({ 'top', 'right', 'bottom', 'left' }) do
+      local edgyPos = opts[pos]
+      for i, win in ipairs(edgyPos) do
+        if type(win) == 'table' and win.ft == 'help' then
+          table.remove(edgyPos, i)
+        end
       end
     end
   end,
