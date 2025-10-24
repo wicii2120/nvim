@@ -10,7 +10,7 @@ do -- habbits
   map('i', '<c-e>', '<c-o>g<end>')
   map('i', '<c-a>', '<c-o>g^')
   map('i', '<d-cr>', '<c-o>o')
-  map('i', '<s-cr>', '<c-o>o')
+  map('i', '<s-cr>', '<c-o>O')
   map('c', '<c-a>', '<home>')
   map('c', '<c-e>', '<end>')
 
