@@ -1,12 +1,16 @@
 return {
   'neovim/nvim-lspconfig',
   opts = {
+    inlay_hints = {
+      enabled = false,
+    },
     servers = {
       -- vue_ls = {
       --   filetypes = { 'vue', 'typescriptreact' },
       -- },
       vtsls = {
         settings = {
+          complete_function_calls = false,
           typescript = {
             suggest = {
               autoImports = true,

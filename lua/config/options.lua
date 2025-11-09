@@ -4,6 +4,7 @@
 vim.o.exrc = true
 vim.o.wrap = true
 vim.o.winborder = 'rounded'
+vim.o.spell = false
 
 vim.g.lazyvim_python_lsp = 'basedpyright'
 vim.g.lazyvim_prettier_needs_config = true
