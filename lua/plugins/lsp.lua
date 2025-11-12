@@ -10,7 +10,6 @@ return {
       -- },
       vtsls = {
         settings = {
-          complete_function_calls = false,
           typescript = {
             suggest = {
               autoImports = true,
