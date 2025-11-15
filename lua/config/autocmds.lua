@@ -8,24 +8,24 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'go' },
-    callback = function()
-        vim.o.expandtab = false
-    end,
+  pattern = { 'go' },
+  callback = function()
+    vim.o.expandtab = false
+  end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = {
-        'html',
-        'xml',
-        'javascript',
-        'typescript',
-        'javascriptreact',
-        'typescriptreact',
-        'vue',
-    },
-    callback = function()
-        vim.o.tabstop = 2
-        vim.o.shiftwidth = 2
-    end,
+  pattern = {
+    'html',
+    'xml',
+    'javascript',
+    'typescript',
+    'javascriptreact',
+    'typescriptreact',
+    'vue',
+  },
+  callback = function()
+    vim.o.tabstop = 2
+    vim.o.shiftwidth = 2
+  end,
 })

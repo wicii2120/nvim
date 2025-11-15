@@ -1,6 +1,6 @@
 return {
-    'MagicDuck/grug-far.nvim',
-    opts = {
-        transient = false,
-    },
+  'MagicDuck/grug-far.nvim',
+  opts = {
+    transient = false,
+  },
 }
