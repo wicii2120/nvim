@@ -5,17 +5,10 @@
 local map = vim.keymap.set
 
 do -- habbits
-  map({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
-  map('n', 'q:', '<nop>', { noremap = true })
-  map('i', '<d-cr>', '<c-o>o')
-  map('i', '<s-cr>', '<c-o>O', { noremap = true, silent = true })
-  map('c', '<c-a>', '<home>')
-  map('c', '<c-e>', '<end>')
-
-  vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'grug-far',
-    callback = function()
-      map('n', 'q', '<Nop>', { buffer = true, noremap = true })
-    end,
-  })
+    map({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
+    map('n', 'q:', '<nop>', { noremap = true })
+    map('i', '<d-cr>', '<c-o>o')
+    map('i', '<s-cr>', '<c-o>O', { noremap = true, silent = true })
+    map('c', '<c-a>', '<home>')
+    map('c', '<c-e>', '<end>')
 end
