@@ -20,6 +20,10 @@ return {
         total = 200,
       },
     },
+    explorer = {
+      replace_netrw = false,
+      trash = true,
+    },
   },
   keys = {
     {

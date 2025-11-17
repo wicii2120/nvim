@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {
+    'lua',
     'html',
     'xml',
     'javascript',
@@ -23,6 +24,8 @@ vim.api.nvim_create_autocmd('FileType', {
     'javascriptreact',
     'typescriptreact',
     'vue',
+    'json',
+    'yaml',
   },
   callback = function()
     vim.o.tabstop = 2
