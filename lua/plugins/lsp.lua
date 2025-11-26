@@ -4,6 +4,7 @@ return {
     inlay_hints = {
       enabled = false,
     },
+    complete_function_calls = false,
     servers = {
       -- vue_ls = {
       --   filetypes = { 'vue', 'typescriptreact' },
