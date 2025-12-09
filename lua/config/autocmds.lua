@@ -1,6 +1,11 @@
+---@param name string
+local augroup = function(name)
+  return vim.api.nvim_create_augroup('my_' .. name, { clear = true })
+end
+
 -- go use actual tabs
 vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('programming_language', { clear = false }),
+  group = augroup('go_tab'),
   pattern = { 'go' },
   callback = function()
     vim.bo.expandtab = false
@@ -9,7 +14,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- 2 space tab
 vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('programming_language', { clear = false }),
+  group = augroup('2_space_tab'),
   pattern = {
     'lua',
     'html',
@@ -27,6 +32,16 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.bo.tabstop = 2
     vim.bo.shiftwidth = 2
+  end,
+})
+
+-- Check if we need to reload the file when it changed
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = augroup('checktime'),
+  callback = function()
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd('checktime')
+    end
   end,
 })
 
@@ -51,7 +66,7 @@ local ts = require('nvim-treesitter')
 if ts then
   local installed = ts.get_installed()
   vim.api.nvim_create_autocmd({ 'FileType' }, {
-    group = vim.api.nvim_create_augroup('my_treesitter', { clear = true }),
+    group = augroup('my_treesitter'),
     callback = function(ev)
       local ft = ev.match
       local lang = vim.treesitter.language.get_lang(ft)

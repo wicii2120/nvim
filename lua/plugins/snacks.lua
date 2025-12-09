@@ -131,8 +131,8 @@ return {
       { '<leader>.', function() Snacks.scratch() end, desc = 'Toggle Scratch Buffer' },
       { '<leader>S', function() Snacks.scratch.select() end, desc = 'Select Scratch Buffer' },
 
-      { '[w', function() Snacks.words.jump(-vim.v.count1, true) end, desc = 'Previous Word' },
-      { ']w', function() Snacks.words.jump(vim.v.count1, true) end, desc = 'Next Word' },
+      { '[[', function() Snacks.words.jump(-vim.v.count1, true) end, desc = 'Previous Word' },
+      { ']]', function() Snacks.words.jump(vim.v.count1, true) end, desc = 'Next Word' },
 
       { '<leader>e', function() Snacks.explorer() end, desc = 'File Explorer' },
     },

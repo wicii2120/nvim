@@ -8,7 +8,7 @@ vim.keymap.set('c', '<c-a>', '<home>')
 vim.keymap.set('c', '<c-e>', '<end>')
 vim.keymap.set('n', 'q:', '<nop>', { noremap = true })
 
-vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', {desc = 'lazy.nvim'})
+vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy.nvim' })
 
 -- Move Lines
 vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
