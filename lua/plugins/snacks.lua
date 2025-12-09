@@ -173,12 +173,6 @@ return {
         lsp = { name = 'vtsls' },
         desc = 'Organize Imports',
       })
-
-      -- Set keymap for buffers with LSP that supports definitions
-      Snacks.keymap.set('n', 'gd', vim.lsp.buf.definition, {
-        lsp = { method = 'textDocument/definition' },
-        desc = 'Go to Definition',
-      })
     end,
   },
 }
