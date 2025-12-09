@@ -1,15 +1,76 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
 vim.o.wrap = true
-vim.o.winborder = 'rounded'
 vim.o.spell = false
+vim.o.winborder = 'rounded'
 vim.o.colorcolumn = '80'
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
+vim.o.shiftround = true -- Round indent
 
-vim.g.lazyvim_python_lsp = 'basedpyright'
-vim.g.lazyvim_prettier_needs_config = true
-vim.g.root_spec = { { '.git', 'lua' }, 'cwd' }
-vim.g.snacks_animate = false
+vim.o.exrc = true
+vim.o.autowrite = true
+-- only set clipboard if not in ssh, to make sure the OSC 52
+-- integration works automatically.
+vim.o.clipboard = vim.env.SSH_CONNECTION and '' or 'unnamedplus' -- Sync with system clipboard
+vim.o.completeopt = 'menu,menuone,noselect'
+vim.o.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+vim.o.confirm = true -- Confirm to save changes before exiting modified buffer
+vim.o.cursorline = true -- Enable highlighting of the current line
+vim.o.foldlevel = 20
+vim.o.foldmethod = 'indent'
+vim.o.formatoptions = 'jcroqlnt'
+vim.o.grepformat = '%f:%l:%c:%m'
+vim.o.grepprg = 'rg --vimgrep'
+vim.o.ignorecase = true -- Ignore case
+vim.o.inccommand = 'nosplit' -- preview incremental substitute
+vim.o.jumpoptions = 'clean'
+vim.o.laststatus = 3 -- global statusline
+vim.o.linebreak = true -- Wrap lines at convenient points
+vim.o.list = true -- Show some invisible characters (tabs...
+vim.o.mouse = 'a' -- Enable mouse mode
+vim.o.number = true -- Print line number
+vim.o.relativenumber = true -- Relative line numbers
+vim.o.pumheight = 20 -- Maximum number of entries in a popup
+vim.o.scrolloff = 4 -- Lines of context
+vim.o.showmode = false -- Dont show mode since we have a statusline
+vim.o.smartcase = true -- Don't ignore case with capitals
+vim.o.smoothscroll = true
+vim.o.splitright = true
+vim.o.splitkeep = 'screen'
+vim.o.splitbelow = true -- Put new windows below current
+vim.o.termguicolors = true -- True color support
+vim.o.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+vim.o.undofile = true
+vim.o.updatetime = 500
+vim.o.wildmode = 'longest:full,full' -- Command-line completion mode
+vim.o.winminwidth = 5 -- Minimum window width
+
+vim.opt.fillchars = {
+  foldopen = '',
+  foldclose = '',
+  fold = ' ',
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
+}
+vim.opt.sessionoptions = {
+  'buffers',
+  'curdir',
+  'tabpages',
+  'winsize',
+  'help',
+  'globals',
+  'skiprtp',
+  'folds',
+}
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
+
+vim.filetype.add({
+  pattern = {
+    ['.*%.env.*'] = 'dotenv',
+  },
+})
+vim.treesitter.language.register('bash', 'dotenv')

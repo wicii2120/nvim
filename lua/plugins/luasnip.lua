@@ -8,8 +8,4 @@ return {
       })
     end,
   },
-  {
-    'rafamadriz/friendly-snippets',
-    enabled = false,
-  },
 }

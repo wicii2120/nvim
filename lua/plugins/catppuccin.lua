@@ -6,6 +6,9 @@ return {
     ---@module 'catppuccin'
     ---@type CatppuccinOptions
     opts = {
+      dim_inactive = {
+        enabled = true,
+      },
       background = {
         light = 'latte',
         dark = 'mocha',
@@ -25,20 +28,6 @@ return {
           ['@tag.tsx'] = { fg = colors.pink },
         }
       end,
-      dim_inactive = {
-        enabled = true, -- dims the background color of inactive window
-      },
-    },
-    specs = {
-      {
-        'akinsho/bufferline.nvim',
-        optional = true,
-        opts = function(_, opts)
-          if (vim.g.colors_name or ''):find('catppuccin') then
-            opts.highlights = require('catppuccin.special.bufferline').get_theme()
-          end
-        end,
-      },
     },
   },
 }

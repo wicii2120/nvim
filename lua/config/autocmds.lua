@@ -1,20 +1,15 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
---
--- Add any additional autocmds here
--- with `vim.api.nvim_create_autocmd`
---
--- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
--- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
-
+-- go use actual tabs
 vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('programming_language', { clear = false }),
   pattern = { 'go' },
   callback = function()
-    vim.o.expandtab = false
+    vim.bo.expandtab = false
   end,
 })
 
+-- 2 space tab
 vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('programming_language', { clear = false }),
   pattern = {
     'lua',
     'html',
@@ -27,15 +22,48 @@ vim.api.nvim_create_autocmd('FileType', {
     'json',
     'yaml',
     'css',
+    'http',
   },
   callback = function()
-    vim.o.tabstop = 2
-    vim.o.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
   end,
 })
 
-vim.api.nvim_create_autocmd('QuickFixCmdPost', {
+-- Highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.cmd([[Trouble qflist open]])
+    (vim.hl or vim.highlight).on_yank()
   end,
 })
+
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ 'VimResized' }, {
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd('tabdo wincmd =')
+    vim.cmd('tabnext ' .. current_tab)
+  end,
+})
+
+-- treeistter
+local ts = require('nvim-treesitter')
+if ts then
+  local installed = ts.get_installed()
+  vim.api.nvim_create_autocmd({ 'FileType' }, {
+    group = vim.api.nvim_create_augroup('my_treesitter', { clear = true }),
+    callback = function(ev)
+      local ft = ev.match
+      local lang = vim.treesitter.language.get_lang(ft)
+      if not vim.tbl_contains(installed, lang) then
+        return
+      end
+
+      vim.treesitter.start(ev.buf)
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.wo.foldmethod = 'expr'
+    end,
+  })
+end
