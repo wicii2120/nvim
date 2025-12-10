@@ -5,12 +5,12 @@ return {
     spec = {
       {
         mode = { 'n', 'v' },
-        { '<leader>a', group = 'AI', icon = '󰫮' },
+        { '<leader>a', group = 'AI', icon = '󱚠' },
       },
       {
         mode = { 'n', 'x' },
         { '<leader>g', group = 'Git' },
-        { '<leader>n', group = 'Noice' },
+        { '<leader>sn', group = 'Noice' },
         { '<leader>c', group = 'Code' },
         { '<leader>q', group = 'Session' },
       },

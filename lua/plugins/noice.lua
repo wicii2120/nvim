@@ -68,8 +68,8 @@ return {
       expr = true,
     },
     {'<leader>sn', function() require('noice').cmd('pick') end, desc='Noice Picker'},
-    {'<leader>nl', function() require('noice').cmd('last') end, desc='Noice Last'},
-    {'<leader>nh', function() require('noice').cmd('history') end, desc='Noice History'},
-    {'<leader>na', function() require('noice').cmd('history') end, desc='Noice All'},
+    {'<leader>snl', function() require('noice').cmd('last') end, desc='Noice Last'},
+    {'<leader>snh', function() require('noice').cmd('history') end, desc='Noice History'},
+    {'<leader>sna', function() require('noice').cmd('history') end, desc='Noice All'},
   },
 }
