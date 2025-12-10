@@ -8,6 +8,7 @@ return {
         enabled = false,
       },
       win = {
+        layout = 'float',
         keys = {
           prompt = { '<s-c-p>', 'prompt', mode = 't', desc = 'insert prompt or context' },
         },

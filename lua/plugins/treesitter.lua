@@ -8,6 +8,9 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    opts = {},
+    opts = {
+      multiwindow = true,
+      max_lines = '10%',
+    },
   },
 }

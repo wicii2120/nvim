@@ -1,6 +1,6 @@
 ---@param name string
 local augroup = function(name)
-  return vim.api.nvim_create_augroup('my_' .. name, { clear = true })
+  return vim.api.nvim_create_augroup('my.' .. name, { clear = true })
 end
 
 -- go use actual tabs
@@ -42,13 +42,6 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
     if vim.o.buftype ~= 'nofile' then
       vim.cmd('checktime')
     end
-  end,
-})
-
--- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    (vim.hl or vim.highlight).on_yank()
   end,
 })
 

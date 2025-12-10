@@ -19,6 +19,16 @@ return {
             },
           },
         },
+        keymaps = {
+          send = {
+            callback = function(chat)
+              vim.cmd('stopinsert')
+              chat:submit()
+              chat:add_buf_message({ role = 'llm', content = '' })
+            end,
+          },
+          close = false,
+        },
       },
       inline = {
         adapter = {
@@ -37,18 +47,20 @@ return {
     display = {
       chat = {
         window = {
-          width = 0.35,
+          layout = 'float',
+          height = 0.9,
+          width = 0.9,
+          opts = {
+            conceallevel = 3,
+          },
         },
       },
     },
-    keymaps = {
-      send = {
-        callback = function(chat)
-          vim.cmd('stopinsert')
-          chat:submit()
-          chat:add_buf_message({ role = 'llm', content = '' })
-        end,
-      },
+  },
+  specs = {
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      ft = { 'markdown', 'codecompanion' },
     },
   },
   config = function(_, opts)
@@ -58,9 +70,9 @@ return {
   end,
   keys = {
     {
-      '<c-.>',
+      '<leader>ac',
       function()
-        require('codecompanion').toggle({ window_opts = { layout = 'float', width = 0.7 } })
+        require('codecompanion').toggle()
       end,
       desc = 'Toggle Code Companion Chat (float)',
     },
