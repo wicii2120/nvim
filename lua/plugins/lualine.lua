@@ -35,7 +35,7 @@ return {
         },
       },
       sections = {
-        lualine_a = { { 'mode', separator = { left = '', right = '' } } },
+        lualine_a = { { 'mode', separator = { right = '' } } },
         lualine_b = { { 'branch', icon = ' ' }, 'diff', 'diagnostics' },
         lualine_c = { { 'filename', newfile_status = true, path = 1 } },
         lualine_x = {
@@ -43,7 +43,7 @@ return {
           'filetype',
         },
         lualine_y = { 'progress' },
-        lualine_z = { { 'location', separator = { left = '', right = '' }, padding = 0 } },
+        lualine_z = { { 'location', separator = { left = '' }, padding = 0 } },
       },
       inactive_sections = {
         lualine_a = {},

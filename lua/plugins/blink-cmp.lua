@@ -28,5 +28,11 @@ return {
         },
       },
     },
+    signature = {
+      enabled = true,
+    },
+    snippets = {
+      preset = 'luasnip',
+    },
   },
 }

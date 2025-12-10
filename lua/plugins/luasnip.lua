@@ -2,10 +2,14 @@ return {
   {
     'L3MON4D3/LuaSnip',
     config = function(_, opts)
-      require('luasnip').setup(opts)
+      local ls = require('luasnip')
+      ls.setup(opts)
       require('luasnip.loaders.from_lua').lazy_load({
         paths = { vim.fn.stdpath('config') .. '/lua/snippets' },
       })
+      ls.filetype_extend('typescript', { 'javascript' })
+      ls.filetype_extend('javascriptreact', { 'javascript' })
+      ls.filetype_extend('typescriptreact', { 'javascript' })
     end,
   },
 }

@@ -9,6 +9,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.shiftround = true -- Round indent
+vim.o.scroll = 16
 
 vim.o.exrc = true
 vim.o.autowrite = true

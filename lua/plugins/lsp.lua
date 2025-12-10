@@ -1,48 +1,5 @@
 return {
   'neovim/nvim-lspconfig',
-  opts = {
-    inlay_hints = {
-      enabled = false,
-    },
-    diagnostics = {
-      underline = {
-        severity = {
-          min = vim.diagnostic.severity.WARN,
-        },
-      },
-      virtual_text = {
-        severity = {
-          min = vim.diagnostic.severity.WARN,
-        },
-      },
-    },
-    servers = {
-      vtsls = {
-        settings = {
-          typescript = {
-            suggest = {
-              autoImports = true,
-              completeFunctionCalls = false,
-            },
-          },
-          javascript = {
-            suggest = {
-              autoImports = true,
-              completeFunctionCalls = false,
-            },
-          },
-        },
-      },
-      tailwindcss = {
-        settings = {
-          tailwindCSS = {
-            classFunctions = { 'twMerge', 'cva', 'tv' },
-            classAttributes = { 'class', 'className', 'ngClass', 'class:list', 'ui' },
-          },
-        },
-      },
-    },
-  },
   config = function()
     vim.lsp.inlay_hint.enable(false)
 
@@ -53,7 +10,7 @@ return {
           [vim.diagnostic.severity.WARN] = ' ',
           [vim.diagnostic.severity.INFO] = '',
           [vim.diagnostic.severity.HINT] = '',
-        }
+        },
       },
       underline = {
         severity = {
