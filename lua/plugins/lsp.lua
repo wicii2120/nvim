@@ -12,11 +12,6 @@ return {
           [vim.diagnostic.severity.HINT] = '',
         },
       },
-      underline = {
-        severity = {
-          min = vim.diagnostic.severity.WARN,
-        },
-      },
       virtual_text = {
         spacing = 4,
         source = 'if_many',
@@ -39,6 +34,10 @@ return {
           },
         },
       },
+    })
+
+    vim.lsp.config('vtsls', {
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     })
   end,
 }

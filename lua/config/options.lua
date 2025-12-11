@@ -48,6 +48,7 @@ vim.o.undofile = true
 vim.o.updatetime = 500
 vim.o.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.o.winminwidth = 5 -- Minimum window width
+vim.o.signcolumn = 'no'
 
 vim.opt.fillchars = {
   foldopen = '',
