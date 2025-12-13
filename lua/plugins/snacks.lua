@@ -111,6 +111,7 @@ return {
       { '<leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
       { '<leader>sw', function() Snacks.picker.grep_word() end, desc = 'Visual selection or word', mode = { 'n', 'x' } },
       -- search
+      { '<leader>n', function() Snacks.picker.notifications() end, desc = 'Notifications' },
       { '<leader>s"', function() Snacks.picker.registers() end, desc = 'Registers' },
       { '<leader>s/', function() Snacks.picker.search_history() end, desc = 'Search History' },
       { '<leader>sa', function() Snacks.picker.autocmds() end, desc = 'Autocmds' },
@@ -160,10 +161,8 @@ return {
       { '<leader>.', function() Snacks.scratch() end, desc = 'Toggle Scratch Buffer' },
       { '<leader>S', function() Snacks.scratch.select() end, desc = 'Select Scratch Buffer' },
 
-      { '[[', function() Snacks.words.jump(-vim.v.count1, true) end, desc = 'Previous Word' },
-      { ']]', function() Snacks.words.jump(vim.v.count1, true) end, desc = 'Next Word' },
-
-      { '<leader>e', function() Snacks.explorer() end, desc = 'File Explorer' },
+      { '[w', function() Snacks.words.jump(-vim.v.count1, true) end, desc = 'Previous Word' },
+      { ']w', function() Snacks.words.jump(vim.v.count1, true) end, desc = 'Next Word' },
     },
 
     config = function(_, opts)

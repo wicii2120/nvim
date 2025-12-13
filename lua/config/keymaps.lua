@@ -10,13 +10,7 @@ vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<c-s>', '<cmd>w<cr><esc>', { desc = 'Sav
 vim.keymap.set('c', '<c-a>', '<home>')
 vim.keymap.set('c', '<c-e>', '<end>')
 
--- Block q:, we have snacks for searching cmdline history
-vim.keymap.set('n', 'q:', '<nop>', { noremap = true })
-
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy.nvim' })
-
--- Window
-vim.keymap.set('n', '<c-w><c-c>', '<c-w>c')
 
 -- Move Lines
 vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
@@ -75,9 +69,9 @@ local diagnostic_goto = function(next, severity)
     })
   end
 end
-vim.keymap.set('n', ']d', diagnostic_goto(true), { desc = 'Next Diagnostic' })
-vim.keymap.set('n', '[d', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
-vim.keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
+vim.keymap.set('n', ']dd', diagnostic_goto(true), { desc = 'Next Diagnostic' })
+vim.keymap.set('n', '[dd', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
+vim.keymap.set('n', ']de', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
 vim.keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
 vim.keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
 vim.keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
