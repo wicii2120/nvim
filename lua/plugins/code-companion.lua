@@ -10,7 +10,7 @@ return {
       chat = {
         adapter = {
           name = 'copilot',
-          model = 'gemini-3-pro-preview',
+          model = 'claude-opus-4.5',
         },
         tools = {
           opts = {
