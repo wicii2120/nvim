@@ -14,8 +14,13 @@ return {
     },
   },
   event = { 'InsertEnter', 'CmdlineEnter' },
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
   opts = {
     completion = {
+      trigger = {
+        show_on_keyword = true,
+      },
       accept = {
         auto_brackets = {
           enabled = false,
@@ -33,6 +38,13 @@ return {
     },
     snippets = {
       preset = 'luasnip',
+    },
+    fuzzy = {
+      implementation = 'prefer_rust_with_warning',
+      use_proximity = true,
+      frecency = {
+        enabled = true,
+      },
     },
   },
 }
