@@ -13,4 +13,11 @@ return {
       max_lines = '10%',
     },
   },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
+    opts = {
+      lookahead = true,
+    },
+  },
 }

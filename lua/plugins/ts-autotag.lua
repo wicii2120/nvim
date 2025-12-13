@@ -1,6 +1,6 @@
 return {
   'windwp/nvim-ts-autotag',
-  lazy = false,
+  event = 'InsertEnter',
   opts = {
     enable_close = true, -- Auto close tags
     enable_rename = true, -- Auto rename pairs of tags
