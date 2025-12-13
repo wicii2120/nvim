@@ -8,11 +8,12 @@ return {
         { '<leader>a', group = 'AI', icon = '󱚠' },
       },
       {
-        mode = { 'n', 'x' },
+        mode = { 'n' },
         { '<leader>g', group = 'Git' },
         { '<leader>sn', group = 'Noice' },
         { '<leader>c', group = 'Code' },
         { '<leader>q', group = 'Session' },
+        { '<leader>R', group = 'HTTP', icon = '' },
       },
     },
   },
