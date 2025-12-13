@@ -1,12 +1,22 @@
+-- Better new line
 vim.keymap.set('i', '<s-cr>', '<c-o>O')
 vim.keymap.set('i', '<d-cr>', '<c-o>o')
+
+-- Save file
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<c-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
+
+-- Better cmdline navigation
 vim.keymap.set('c', '<c-a>', '<home>')
 vim.keymap.set('c', '<c-e>', '<end>')
+
+-- Block q:, we have snacks for searching cmdline history
 vim.keymap.set('n', 'q:', '<nop>', { noremap = true })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy.nvim' })
+
+-- Window
+vim.keymap.set('n', '<c-w><c-c>', '<c-w>c')
 
 -- Move Lines
 vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
