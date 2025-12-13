@@ -182,6 +182,7 @@ return {
       end
 
       Snacks.toggle.zoom():map('<leader>uz')
+      Snacks.toggle.zen():map('<leader>uZ')
 
       -- Set keymap for buffers with any LSP that supports code actions
       Snacks.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {
