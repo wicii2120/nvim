@@ -27,7 +27,8 @@ return {
         return {
           ['@lsp.type.component.vue'] = { fg = colors.pink },
           ['@tag.tsx'] = { fg = colors.pink },
-          WinSeparator = { fg = colors.lavender },
+          WinSeparator = { fg = colors.overlay0 },
+          SnacksIndentScope = { fg = colors.lavender },
         }
       end,
     },
