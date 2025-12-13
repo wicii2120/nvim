@@ -9,7 +9,6 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.shiftround = true -- Round indent
-vim.o.scroll = 16
 
 vim.o.exrc = true
 vim.o.autowrite = true
@@ -68,7 +67,7 @@ vim.opt.sessionoptions = {
   'skiprtp',
   'folds',
 }
-vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
+vim.opt.shortmess:append({ W = true, c = true, C = true })
 
 vim.filetype.add({
   pattern = {
