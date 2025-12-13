@@ -1,27 +1,39 @@
+---@module 'conform'
 return {
   {
     'stevearc/conform.nvim',
     cmd = 'ConformInfo',
-    ---@module 'conform'
-    ---@type conform.setupOpts
-    opts = {
-      format_on_save = {
-        timeout_ms = 1000,
-      },
-      formatters_by_ft = {
-        typescript = { 'prettier' },
-        javascript = { 'prettier' },
-        typescriptreact = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        css = { 'prettier' },
-        html = { 'prettier' },
-        vue = { 'prettier' },
+    opts = function()
+      local prettier_ft = {
+        'typescript',
+        'javascript',
+        'typescriptreact',
+        'javascriptreact',
+        'css',
+        'html',
+        'vue',
+        'json',
+        'yaml',
+      }
+      local formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'ruff' },
         go = { 'gofmt' },
         sh = { 'shfmt' },
-      },
-    },
+      }
+
+      for _, ft in ipairs(prettier_ft) do
+        formatters_by_ft[ft] = { 'prettier' }
+      end
+
+      ---@type conform.setupOpts
+      return {
+        format_on_save = {
+          timeout_ms = 1000,
+        },
+        formatters_by_ft = formatters_by_ft,
+      }
+    end,
     keys = {
       {
         '<leader>cF',
