@@ -5,11 +5,11 @@ return {
       local ls = require('luasnip')
       ls.setup(opts)
       require('luasnip.loaders.from_lua').lazy_load({
-        paths = { vim.fn.stdpath('config') .. '/lua/snippets' },
+        paths = { vim.fn.stdpath('config') .. '/snippets' },
       })
       ls.filetype_extend('typescript', { 'javascript' })
       ls.filetype_extend('javascriptreact', { 'javascript' })
-      ls.filetype_extend('typescriptreact', { 'javascript' })
+      ls.filetype_extend('typescriptreact', { 'javascript', 'javascriptreact' })
     end,
   },
 }
