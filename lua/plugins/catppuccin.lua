@@ -6,6 +6,7 @@ return {
     ---@module 'catppuccin'
     ---@type CatppuccinOptions
     opts = {
+      flavour = 'mocha',
       dim_inactive = {
         enabled = true,
       },
@@ -26,6 +27,7 @@ return {
         return {
           ['@lsp.type.component.vue'] = { fg = colors.pink },
           ['@tag.tsx'] = { fg = colors.pink },
+          WinSeparator = { fg = colors.lavender },
         }
       end,
     },
