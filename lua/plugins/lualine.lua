@@ -5,15 +5,15 @@ return {
       options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '|', right = '|' },
         disabled_filetypes = {
           statusline = {},
           winbar = {},
         },
         ignore_focus = {},
         always_divide_middle = true,
-        always_show_tabline = true,
+        always_show_tabline = false,
         globalstatus = false,
         refresh = {
           statusline = 1000,
@@ -35,15 +35,28 @@ return {
         },
       },
       sections = {
-        lualine_a = { { 'mode', separator = { right = '' } } },
-        lualine_b = { { 'branch', icon = ' ' }, 'diff', 'diagnostics' },
-        lualine_c = { { 'filename', newfile_status = true, path = 1 } },
-        lualine_x = {
-          { 'lsp_status', icon = ' ', symbols = { done = '', separator = ' 󰿟 ' } },
-          'filetype',
+        lualine_a = { 'mode' },
+        lualine_b = {
+          'branch',
+          'diff',
+          'diagnostics',
         },
+        lualine_c = {
+          {
+            'filename',
+            newfile_status = true,
+            path = 4,
+            symbols = {
+              modified = '',
+              readonly = '󰍁',
+              unnamed = '',
+              newfile = '',
+            },
+          },
+        },
+        lualine_x = { 'filnetype' },
         lualine_y = { 'progress' },
-        lualine_z = { { 'location', separator = { left = '' }, padding = 0 } },
+        lualine_z = { 'location' },
       },
       inactive_sections = {
         lualine_a = {},
@@ -53,7 +66,17 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},
+      tabline = {
+        lualine_z = {
+          {
+            'tabs',
+            symbols = {
+              modified = ' ',
+            },
+            separator = { left = '' },
+          },
+        },
+      },
       winbar = {},
       inactive_winbar = {},
       extensions = { 'quickfix' },
