@@ -1,7 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 vim.keymap.set('i', '<s-cr>', '<c-o>O')
 vim.keymap.set('i', '<d-cr>', '<c-o>o')
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
@@ -75,3 +71,17 @@ vim.keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' 
 vim.keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
 vim.keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
 vim.keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
+
+-- commenting
+vim.keymap.set(
+  'n',
+  'gco',
+  'o<esc>ccx<esc><cmd>normal gcc<cr>fxa<bs>',
+  { desc = 'Add Comment Below' }
+)
+vim.keymap.set(
+  'n',
+  'gcO',
+  'O<esc>ccx<esc><cmd>normal gcc<cr>fxa<bs>',
+  { desc = 'Add Comment Above' }
+)
