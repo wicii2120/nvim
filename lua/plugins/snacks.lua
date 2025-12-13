@@ -45,7 +45,7 @@ return {
       image = {
         enabled = true,
         doc = {
-          max_height = 4,
+          max_height = 3,
         },
         convert = {
           notify = false, -- show a notification on error
