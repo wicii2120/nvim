@@ -4,8 +4,8 @@ return {
   ---@type Flash.Config
   opts = {
     label = {
-      uppercase = false
-    }
+      uppercase = false,
+    },
   },
   keys = {
     {
