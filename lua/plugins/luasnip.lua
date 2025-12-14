@@ -11,5 +11,19 @@ return {
       ls.filetype_extend('javascriptreact', { 'javascript' })
       ls.filetype_extend('typescriptreact', { 'javascript', 'javascriptreact' })
     end,
+    keys = {
+      {
+        '<esc>',
+        function()
+          local ls = require('luasnip')
+          if ls.get_active_snip() then
+            ls.unlink_current()
+          end
+          return '<esc>'
+        end,
+        mode = { 'i', 's', 'n' },
+        expr = true,
+      },
+    },
   },
 }

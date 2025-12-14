@@ -6,8 +6,10 @@ return {
     {
       '<leader>cr',
       function()
-        vim.api.nvim_feedkeys(':IncRename ' .. vim.fn.expand('<cword>'), 'n', true)
+        return ':IncRename ' .. vim.fn.expand('<cword>')
       end,
+      expr = true,
+      desc = 'Inc-Rename',
     },
   },
 }
