@@ -6,6 +6,9 @@ return {
     label = {
       uppercase = false,
     },
+    jump = {
+      inclusive = false,
+    },
   },
   keys = {
     {
