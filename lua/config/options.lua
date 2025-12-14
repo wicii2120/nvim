@@ -35,27 +35,26 @@ vim.o.number = true -- Print line number
 vim.o.relativenumber = true -- Relative line numbers
 vim.o.pumheight = 20 -- Maximum number of entries in a popup
 vim.o.scrolloff = 4 -- Lines of context
-vim.o.showmode = false -- Dont show mode since we have a statusline
 vim.o.smartcase = true -- Don't ignore case with capitals
 vim.o.smoothscroll = true
 vim.o.splitright = true
 vim.o.splitkeep = 'screen'
 vim.o.splitbelow = true -- Put new windows below current
 vim.o.termguicolors = true -- True color support
-vim.o.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+vim.o.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
 vim.o.undofile = true
 vim.o.updatetime = 500
 vim.o.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.o.winminwidth = 5 -- Minimum window width
 vim.o.signcolumn = 'no'
+vim.o.showcmdloc = 'statusline'
 
 vim.opt.fillchars = {
   foldopen = '',
   foldclose = '',
   fold = ' ',
-  foldsep = ' ',
   diff = '╱',
-  eob = ' ',
+  eob = '~',
 }
 vim.opt.sessionoptions = {
   'buffers',
@@ -67,7 +66,13 @@ vim.opt.sessionoptions = {
   'skiprtp',
   'folds',
 }
-vim.opt.shortmess:append({ W = true, c = true, C = true })
+vim.opt.shortmess = 'atToOCF'
+vim.opt.rulerformat = '%=%l,%v  %p%% '
+
+require('statusline')
+vim.o.statusline = '%!v:lua.my_status_line()'
+require('tabline')
+vim.o.tabline = '%!v:lua.my_tab_line()'
 
 vim.filetype.add({
   pattern = {
