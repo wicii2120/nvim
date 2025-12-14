@@ -2,6 +2,7 @@
 return {
   'folke/noice.nvim',
   event = 'VimEnter',
+  enabled = false,
   dependencies = {
     'MunifTanjim/nui.nvim',
     {
