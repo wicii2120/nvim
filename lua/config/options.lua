@@ -64,7 +64,6 @@ vim.opt.sessionoptions = {
 }
 vim.opt.shortmess:append({ a = true })
 vim.opt.rulerformat = '%=%l,%v  %p%% '
-vim.opt.formatoptions:append({ r = true, n = true, ['1'] = true, p = true })
 
 require('statusline')
 vim.o.statusline = '%!v:lua.my_status_line()'
@@ -77,3 +76,6 @@ vim.filetype.add({
   },
 })
 vim.treesitter.language.register('bash', 'dotenv')
+
+-- cd to current file
+vim.cmd([[cab cdd cd %:h]])
