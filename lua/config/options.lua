@@ -15,15 +15,11 @@ vim.o.autowrite = true
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- integration works automatically.
 vim.o.clipboard = vim.env.SSH_CONNECTION and '' or 'unnamedplus' -- Sync with system clipboard
-vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.o.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.foldlevel = 20
 vim.o.foldmethod = 'indent'
-vim.o.formatoptions = 'jcroqlnt'
-vim.o.grepformat = '%f:%l:%c:%m'
-vim.o.grepprg = 'rg --vimgrep'
 vim.o.ignorecase = true -- Ignore case
 vim.o.inccommand = 'nosplit' -- preview incremental substitute
 vim.o.jumpoptions = 'clean'
@@ -66,8 +62,9 @@ vim.opt.sessionoptions = {
   'skiprtp',
   'folds',
 }
-vim.opt.shortmess = 'atToOCF'
+vim.opt.shortmess:append({ a = true })
 vim.opt.rulerformat = '%=%l,%v  %p%% '
+vim.opt.formatoptions:append({ r = true, n = true, ['1'] = true, p = true })
 
 require('statusline')
 vim.o.statusline = '%!v:lua.my_status_line()'
