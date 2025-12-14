@@ -43,3 +43,13 @@ if ts then
     end,
   })
 end
+
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = augroup('scratch buffer'),
+  callback = function()
+    local bt = vim.bo.buftype
+    if bt == 'nofile' or bt == 'help' then
+      vim.keymap.set('n', 'q', '<cmd>bdelete<cr>', { buffer = true })
+    end
+  end,
+})
