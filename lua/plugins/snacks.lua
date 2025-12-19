@@ -89,7 +89,8 @@ return {
       { '<leader>,', function() Snacks.picker.buffers() end, desc = 'Listed Buffers' },
       { '<leader>/', function() Snacks.picker.grep() end, desc = 'Grep' },
       { '<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History' },
-      { '<leader>e', function() Snacks.explorer() end, desc = 'File Explorer' },
+      { '<leader>e', function() Snacks.explorer.reveal() end, desc = 'Reveal File' },
+      { '<leader>ue', function() Snacks.explorer() end, desc = 'File Explorer' },
       -- find
       { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Listed Buffers' },
       { '<leader>fB', function() Snacks.picker.buffers({ hidden = true }) end, desc = 'Listed Buffers' },
@@ -149,6 +150,10 @@ return {
       { '<leader>ss', function() Snacks.picker.lsp_symbols() end, desc = 'LSP Symbols' },
       { '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end, desc = 'LSP Workspace Symbols' },
       { '<leader>cl', function() Snacks.picker.lsp_config() end, desc = 'LSP Info' },
+
+      {'<leader>sv', function() Snacks.picker.cliphist() end, desc = 'System Clipboard'},
+      {'<leader>r', function() Snacks.picker.resume() end, desc = 'Resume Last Picker'},
+      {'<leader>st', function() Snacks.picker.tags() end, desc = 'Tags'},
 
       {
         '<C-/>',

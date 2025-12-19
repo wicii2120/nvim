@@ -44,6 +44,8 @@ vim.o.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.o.winminwidth = 5 -- Minimum window width
 vim.o.signcolumn = 'no'
 vim.o.showcmdloc = 'statusline'
+vim.o.cmdheight = 1
+vim.o.showbreak = '        '
 
 vim.opt.fillchars = {
   foldopen = '',
@@ -62,13 +64,15 @@ vim.opt.sessionoptions = {
   'skiprtp',
   'folds',
 }
-vim.opt.shortmess:append({ a = true })
+vim.cmd([[set shortmess+=a]])
+vim.cmd([[set formatoptions-=t]])
+vim.cmd([[set formatoptions+=n1pro]])
 vim.opt.rulerformat = '%=%l,%v  %p%% '
 
-require('statusline')
-vim.o.statusline = '%!v:lua.my_status_line()'
-require('tabline')
-vim.o.tabline = '%!v:lua.my_tab_line()'
+-- require('statusline')
+-- vim.o.statusline = '%!v:lua.my_status_line()'
+-- require('tabline')
+-- vim.o.tabline = '%!v:lua.my_tab_line()'
 
 vim.filetype.add({
   pattern = {

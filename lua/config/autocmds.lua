@@ -53,13 +53,3 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     end
   end,
 })
-
--- prevent auto comment in normal mode
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  group = augroup('formatoptions'),
-  pattern = '*',
-  callback = function()
-    vim.cmd([[setlocal formatoptions-=o]])
-    vim.cmd([[setlocal formatoptions+=n1p]])
-  end,
-})

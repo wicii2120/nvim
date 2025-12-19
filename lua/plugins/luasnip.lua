@@ -10,6 +10,10 @@ return {
       ls.filetype_extend('typescript', { 'javascript' })
       ls.filetype_extend('javascriptreact', { 'javascript' })
       ls.filetype_extend('typescriptreact', { 'javascript', 'javascriptreact' })
+      ls.filetype_extend(
+        'vue',
+        { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }
+      )
     end,
     keys = {
       {

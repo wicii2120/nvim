@@ -9,6 +9,11 @@ return {
     jump = {
       inclusive = false,
     },
+    modes = {
+      char = {
+        enabled = false,
+      },
+    },
   },
   keys = {
     {

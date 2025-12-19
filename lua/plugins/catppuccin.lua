@@ -10,6 +10,7 @@ return {
       dim_inactive = {
         enabled = true,
       },
+      term_colors = true,
       background = {
         light = 'latte',
         dark = 'mocha',

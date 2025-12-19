@@ -20,11 +20,7 @@ return {
     }),
   }),
 
-  s('named import', {
-    t('import {'), i(0), t("} from '"), i(1), t("';"),
-  }),
-
-  s('default import', {
+  s('import statement', {
     t('import '), i(0, 'placeholder'), t(" from '"), i(1), t("';"),
   }),
 
@@ -32,12 +28,19 @@ return {
     t('const { '), i(0), t(' } = '), i(1), t(';'),
   }),
 
-  s('unpack argument', {
-    t('{ '), i(0), t(' }: '), i(1),
-  }),
-
   s('use state', {
     t('const ['), i(1, 'state'), t(', '), f(computeSetter, {1}), t('] = useState('), i(0, 'value'), t(')')
-  })
+  }),
 
+  s('jsdoc', {
+    t({
+      '/**',
+      ' * '}), i(0), t({'',
+      ' */',
+    }),
+  }),
+
+  s('jsdoc type cast', {
+    t({'/** @type {'}), i(1), t('} */ ('), i(0), t(')'),
+  })
 }

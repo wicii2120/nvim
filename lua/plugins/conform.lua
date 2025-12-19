@@ -13,6 +13,7 @@ return {
         'html',
         'vue',
         'json',
+        'jsonc',
         'yaml',
       }
       local formatters_by_ft = {
@@ -29,7 +30,7 @@ return {
       ---@type conform.setupOpts
       return {
         format_on_save = {
-          timeout_ms = 1000,
+          timeout_ms = 2000,
         },
         formatters_by_ft = formatters_by_ft,
       }

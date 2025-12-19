@@ -2,13 +2,14 @@
 vim.keymap.set('i', '<s-cr>', '<c-o>O')
 vim.keymap.set('i', '<d-cr>', '<c-o>o')
 
+-- Quit
+vim.cmd.cabbrev('Qa', 'qa')
+vim.cmd.cabbrev('QA', 'qa')
+vim.cmd.cabbrev('Q', 'q')
+
 -- Save file
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<c-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
-
--- Better cmdline navigation
-vim.keymap.set('c', '<c-a>', '<home>')
-vim.keymap.set('c', '<c-e>', '<end>')
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy.nvim' })
 
@@ -64,9 +65,9 @@ end
 vim.keymap.set('n', ']dd', diagnostic_goto(true), { desc = 'Next Diagnostic' })
 vim.keymap.set('n', '[dd', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
 vim.keymap.set('n', ']de', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
-vim.keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
-vim.keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
-vim.keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
+vim.keymap.set('n', '[de', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
+vim.keymap.set('n', ']dw', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
+vim.keymap.set('n', '[dw', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
 
 -- commenting
 vim.keymap.set(

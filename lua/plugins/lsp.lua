@@ -36,5 +36,14 @@ return {
     vim.lsp.config('vtsls', {
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     })
+
+    vim.lsp.config('tailwindcss', {
+      settings = {
+        tailwindCSS = {
+          classFunctions = { 'twMerge', 'cva', 'tv' },
+          classAttributes = { 'class', 'className', 'ngClass', 'class:list', 'classList', 'ui' },
+        },
+      },
+    })
   end,
 }

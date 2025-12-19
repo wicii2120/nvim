@@ -16,8 +16,9 @@ return {
     'saghen/blink.cmp',
     opts = {
       sources = {
-        -- add lazydev to your completion providers
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = {
+          lua = { inherit_defaults = true, 'lazydev' },
+        },
         providers = {
           lazydev = {
             name = 'LazyDev',
