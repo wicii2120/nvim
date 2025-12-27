@@ -20,6 +20,31 @@ return {
   opts = function()
     return {
       completion = {
+        -- use mini.icons for menu icons
+        menu = {
+          draw = {
+            components = {
+              kind_icon = {
+                text = function(ctx)
+                  local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                  return kind_icon
+                end,
+                -- (optional) use highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                  return hl
+                end,
+              },
+              kind = {
+                -- (optional) use highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                  return hl
+                end,
+              },
+            },
+          },
+        },
         trigger = {
           show_on_keyword = true,
         },
@@ -49,7 +74,7 @@ return {
         },
       },
       sources = {
-        default = { 'lsp', 'buffer', 'snippets', 'path', 'env' },
+        default = { 'lsp', 'snippets', 'buffer', 'path', 'env' },
 
         providers = {
           lsp = {
@@ -71,5 +96,13 @@ return {
         },
       },
     }
+  end,
+  config = function(_, opts)
+    local blink = require('blink.cmp')
+    blink.setup(opts)
+
+    vim.lsp.config('*', {
+      capabilities = blink.get_lsp_capabilities(),
+    })
   end,
 }
