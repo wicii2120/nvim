@@ -45,10 +45,10 @@ if ts then
 end
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  group = augroup('scratch buffer'),
+  group = augroup('quit buffer'),
   callback = function()
     local bt = vim.bo.buftype
-    if bt == 'nofile' or bt == 'help' then
+    if bt == 'nofile' or bt == 'help' or bt == 'nowrite' then
       vim.keymap.set('n', 'q', '<cmd>bdelete<cr>', { buffer = true })
     end
   end,

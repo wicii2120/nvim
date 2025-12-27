@@ -89,11 +89,11 @@ return {
       { '<leader>,', function() Snacks.picker.buffers() end, desc = 'Listed Buffers' },
       { '<leader>/', function() Snacks.picker.grep() end, desc = 'Grep' },
       { '<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History' },
-      { '<leader>e', function() Snacks.explorer.reveal() end, desc = 'Reveal File' },
-      { '<leader>ue', function() Snacks.explorer() end, desc = 'File Explorer' },
+      { '<leader>e', function() Snacks.explorer() end, desc = 'File Explorer' },
       -- find
+      { '<leader>fe', function() Snacks.explorer.reveal() end, desc = 'Reveal File' },
       { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Listed Buffers' },
-      { '<leader>fB', function() Snacks.picker.buffers({ hidden = true }) end, desc = 'Listed Buffers' },
+      { '<leader>fB', function() Snacks.picker.buffers({ hidden = true }) end, desc = 'Hidden Buffers' },
       { '<leader>fc', function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end, desc = 'Find Config File' },
       { '<leader>ff', function() Snacks.picker.files() end, desc = 'Find Files' },
       { '<leader>fg', function() Snacks.picker.git_files() end, desc = 'Find Git Files' },
@@ -151,9 +151,8 @@ return {
       { '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end, desc = 'LSP Workspace Symbols' },
       { '<leader>cl', function() Snacks.picker.lsp_config() end, desc = 'LSP Info' },
 
-      {'<leader>sv', function() Snacks.picker.cliphist() end, desc = 'System Clipboard'},
       {'<leader>r', function() Snacks.picker.resume() end, desc = 'Resume Last Picker'},
-      {'<leader>st', function() Snacks.picker.tags() end, desc = 'Tags'},
+      {'<leader>st', function() Snacks.picker.treesitter() end, desc = 'Treesitter Symbols'},
 
       {
         '<C-/>',
@@ -174,6 +173,8 @@ return {
 
       { '[w', function() Snacks.words.jump(-vim.v.count1, true) end, desc = 'Previous Word' },
       { ']w', function() Snacks.words.jump(vim.v.count1, true) end, desc = 'Next Word' },
+
+      {'<leader>z', function () Snacks.picker.zoxide() end, desc = 'Zoxide'}
     },
 
     config = function(_, opts)
@@ -211,6 +212,19 @@ return {
         })
       end, {
         lsp = { name = 'vtsls' },
+        desc = 'Organize Imports',
+      })
+
+      Snacks.keymap.set('n', '<leader>co', function()
+        vim.lsp.buf.code_action({
+          apply = true,
+          context = {
+            only = { 'source.organizeImports' },
+            diagnostics = {},
+          },
+        })
+      end, {
+        lsp = { name = 'tsgo' },
         desc = 'Organize Imports',
       })
     end,

@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   'folke/sidekick.nvim',
   opts = {
@@ -105,6 +106,13 @@ return {
       end,
       mode = { 'n', 'x' },
       desc = 'Sidekick Select Prompt',
+    },
+    {
+      '<leader>un',
+      function()
+        require('sidekick.nes').toggle()
+      end,
+      desc = 'Toggle NES',
     },
   },
 }

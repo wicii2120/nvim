@@ -31,10 +31,11 @@ return {
       lsp_doc_border = false, -- add a border to hover docs and signature help
       cmdline_output_to_split = false,
     },
+    ---@type NoiceRoute[]
     ---@type NoiceConfigViews
     views = {
       mini = {
-        timeout = 3000,
+        timeout = 5000,
         position = {
           row = -1,
         },
@@ -42,9 +43,29 @@ return {
           winblend = 10,
         },
       },
+      split = {
+        win_options = {
+          previewwindow = true,
+        },
+      },
     },
     ---@type table<string, NoiceCommand>
-    commands = {},
+    commands = {
+      last = {
+        view = 'popup',
+        opts = { enter = true, format = 'details' },
+        filter = {
+          any = {
+            { event = 'notify' },
+            { error = true },
+            { warning = true },
+            { event = 'msg_show' },
+            { event = 'lsp', kind = 'message' },
+          },
+        },
+        filter_opts = { count = 1 },
+      },
+    },
   },
   -- stylua: ignore
   keys = {

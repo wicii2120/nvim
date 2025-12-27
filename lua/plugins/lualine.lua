@@ -12,7 +12,7 @@ return {
           icons_enabled = true,
           theme = 'auto',
           section_separators = { left = '', right = '' },
-          component_separators = { left = '|', right = '|' },
+          component_separators = { left = '', right = '' },
           disabled_filetypes = {
             statusline = {},
             winbar = {},
@@ -43,25 +43,15 @@ return {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = {
+            { 'branch', separator = '|' },
             {
               'filename',
               newfile_status = true,
               path = 4,
-              symbols = {
-                modified = '',
-                readonly = '󰍁',
-                unnamed = '',
-                newfile = '',
-              },
             },
             'diagnostics',
           },
           lualine_c = {
-            -- showcmd
-            {
-              noice.api.status.command.get_hl,
-              cond = noice.api.status.command.has,
-            },
             -- Copilot LSP
             {
               function()
