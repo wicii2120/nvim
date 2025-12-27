@@ -42,5 +42,12 @@ return {
 
   s('jsdoc type cast', {
     t({'/** @type {'}), i(1), t('} */ ('), i(0), t(')'),
+  }),
+
+  s('sql tag', {
+    t({
+      '//@ts-ignore', 
+      'const sql = (strings, ...values) => String.raw({raw: strings}, ...values)'
+    })
   })
 }
