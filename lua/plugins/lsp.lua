@@ -21,29 +21,5 @@ return {
       },
       severity_sort = true,
     })
-
-    vim.lsp.config('*', {
-      capabilities = {
-        workspace = {
-          fileOperations = {
-            didRename = true,
-            willRename = true,
-          },
-        },
-      },
-    })
-
-    vim.lsp.config('vtsls', {
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    })
-
-    vim.lsp.config('tailwindcss', {
-      settings = {
-        tailwindCSS = {
-          classFunctions = { 'twMerge', 'cva', 'tv' },
-          classAttributes = { 'class', 'className', 'ngClass', 'class:list', 'classList', 'ui' },
-        },
-      },
-    })
   end,
 }

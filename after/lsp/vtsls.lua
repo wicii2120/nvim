@@ -10,6 +10,7 @@ local vue_plugin = {
 
 ---@class config: vim.lsp.Config
 return {
+  filetypes = { 'vue' },
   settings = {
     vtsls = {
       tsserver = {
