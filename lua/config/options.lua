@@ -17,18 +17,18 @@ vim.o.confirm = true    -- Confirm to save changes before exiting modified buffe
 vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.foldlevel = 20
 vim.o.foldmethod = 'indent'
-vim.o.ignorecase = true      -- Ignore case
-vim.o.inccommand = 'split' -- preview incremental substitute
+vim.o.ignorecase = true     -- Ignore case
+vim.o.inccommand = 'split'  -- preview incremental substitute
 vim.o.jumpoptions = 'clean'
-vim.o.laststatus = 3         -- global statusline
-vim.o.linebreak = true       -- Wrap lines at convenient points
-vim.o.list = true            -- Show some invisible characters (tabs...
-vim.o.mouse = 'a'            -- Enable mouse mode
-vim.o.number = true          -- Print line number
-vim.o.relativenumber = true  -- Relative line numbers
-vim.o.pumheight = 20         -- Maximum number of entries in a popup
-vim.o.scrolloff = 4          -- Lines of context
-vim.o.smartcase = true       -- Don't ignore case with capitals
+vim.o.laststatus = 3        -- global statusline
+vim.o.linebreak = true      -- Wrap lines at convenient points
+vim.o.list = true           -- Show some invisible characters (tabs...
+vim.o.mouse = 'a'           -- Enable mouse mode
+vim.o.number = true         -- Print line number
+vim.o.relativenumber = true -- Relative line numbers
+vim.o.pumheight = 20        -- Maximum number of entries in a popup
+vim.o.scrolloff = 4         -- Lines of context
+vim.o.smartcase = true      -- Don't ignore case with capitals
 vim.o.smoothscroll = true
 vim.o.splitright = true
 vim.o.splitkeep = 'screen'
@@ -42,7 +42,7 @@ vim.o.winminwidth = 5                -- Minimum window width
 vim.o.signcolumn = 'yes'
 vim.o.showcmdloc = 'statusline'
 vim.o.cmdheight = 1
-vim.o.showbreak = '        '
+vim.o.showbreak = '+++ '
 vim.opt.fillchars = {
   foldopen = '',
   foldclose = '',
@@ -64,6 +64,23 @@ vim.cmd([[set shortmess+=a]])
 vim.cmd([[set formatoptions-=t]])
 vim.cmd([[set formatoptions+=n1pro]])
 vim.opt.rulerformat = '%=%l,%v  %p%% '
+vim.api.nvim_create_user_command("DiffOrig", function()
+  local ft = vim.bo.filetype
+
+  vim.cmd("vert new")
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  vim.bo.swapfile = false
+  vim.bo.buflisted = false
+  if ft ~= "" then vim.bo.filetype = ft end
+
+  vim.cmd("read ++edit #")
+  vim.cmd("1delete _")
+
+  vim.cmd("diffthis")
+  vim.cmd("wincmd p")
+  vim.cmd("diffthis")
+end, {})
 
 -- require('statusline')
 -- vim.o.statusline = '%!v:lua.my_status_line()'
@@ -71,4 +88,4 @@ vim.opt.rulerformat = '%=%l,%v  %p%% '
 -- vim.o.tabline = '%!v:lua.my_tab_line()'
 
 -- cd to current file
-vim.cmd([[cab cdd cd %:h]])
+vim.cmd([[cabbrev cdd cd %:h]])

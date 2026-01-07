@@ -1,7 +1,8 @@
 return {
   'nvim-mini/mini.surround',
+  enabled = false,
   opts = {
-    n_lines = 500,
+    n_lines = 100,
     mappings = {
       add = "gsa", -- Add surrounding in Normal and Visual modes
       delete = "gsd", -- Delete surrounding
@@ -11,5 +12,6 @@ return {
       replace = "gsr", -- Replace surrounding
       update_n_lines = "gsn", -- Update `n_lines`
     },
+    search_method = 'cover_or_next'
   },
 }
