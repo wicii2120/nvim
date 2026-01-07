@@ -29,9 +29,6 @@ return {
 
       ---@type conform.setupOpts
       return {
-        format_on_save = {
-          timeout_ms = 2000,
-        },
         formatters_by_ft = formatters_by_ft,
       }
     end,

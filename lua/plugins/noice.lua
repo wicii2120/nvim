@@ -24,24 +24,40 @@ return {
     presets = {
       -- you can enable a preset by setting it to true, or a table that will override the preset config
       -- you can also add custom presets that you can enable/disable with enabled=true
-      bottom_search = false, -- use a classic bottom cmdline for search
-      command_palette = false, -- position the cmdline and popupmenu together
-      long_message_to_split = true, -- long messages will be sent to a split
-      inc_rename = true, -- enables an input dialog for inc-rename.nvim
-      lsp_doc_border = false, -- add a border to hover docs and signature help
+      bottom_search = false,         -- use a classic bottom cmdline for search
+      command_palette = false,       -- position the cmdline and popupmenu together
+      long_message_to_split = false, -- long messages will be sent to a split
+      inc_rename = true,             -- enables an input dialog for inc-rename.nvim
+      lsp_doc_border = false,        -- add a border to hover docs and signature help
       cmdline_output_to_split = false,
     },
-    ---@type NoiceRoute[]
-    ---@type NoiceConfigViews
+    ---@type NoiceRouteConfig[]
+    routes = {
+      {
+        filter = {
+          min_height = 6,
+        },
+        view = 'split',
+        opts = {
+          enter = true,
+          merge = false,
+        }
+      }
+    },
+    ---@type table<string, NoiceViewOptions>
     views = {
       mini = {
         timeout = 5000,
         position = {
-          row = -1,
+          row = -2,
         },
         win_options = {
           winblend = 10,
         },
+        border = {
+          padding = { 0, 1 },
+          style = 'rounded',
+        }
       },
       split = {
         win_options = {
@@ -60,7 +76,7 @@ return {
             { error = true },
             { warning = true },
             { event = 'msg_show' },
-            { event = 'lsp', kind = 'message' },
+            { event = 'lsp',     kind = 'message' },
           },
         },
         filter_opts = { count = 1 },
@@ -77,10 +93,10 @@ return {
     --   mode = 'c',
     --   desc = 'Redirect Cmdline',
     -- },
-    {'<leader>n', function() Snacks.picker.noice() end, desc='Noice Picker'},
-    {'<leader>snn', function() require('noice').cmd('pick') end, desc='Noice Picker'},
-    {'<leader>snl', function() require('noice').cmd('last') end, desc='Noice Last'},
-    {'<leader>snh', function() require('noice').cmd('history') end, desc='Noice History'},
-    {'<leader>sna', function() require('noice').cmd('all') end, desc='Noice All'},
+    { '<leader>n',   function() Snacks.picker.noice() end,           desc = 'Noice Picker' },
+    { '<leader>snn', function() require('noice').cmd('pick') end,    desc = 'Noice Picker' },
+    { '<leader>snl', function() require('noice').cmd('last') end,    desc = 'Noice Last' },
+    { '<leader>snh', function() require('noice').cmd('history') end, desc = 'Noice History' },
+    { '<leader>sna', function() require('noice').cmd('all') end,     desc = 'Noice All' },
   },
 }

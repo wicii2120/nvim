@@ -1,3 +1,11 @@
+local get_recording_state = function()
+  local reg = vim.fn.reg_recording()
+  if reg ~= '' then
+    return 'recording @' .. reg
+  end
+  return nil
+end
+
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -104,7 +112,12 @@ return {
             },
           },
           lualine_x = {
-            { noice.api.status.mode.get, cond = noice.api.status.mode.has },
+            {
+              get_recording_state,
+              cond = function()
+                return get_recording_state() ~= nil
+              end,
+            },
             { noice.api.status.search.get, cond = noice.api.status.search.has },
             'filetype',
             'fileformat',

@@ -26,8 +26,8 @@ return {
       auto_integrations = true,
       custom_highlights = function(colors)
         return {
-          ['@lsp.type.component.vue'] = { fg = colors.pink },
-          ['@tag.tsx'] = { fg = colors.pink },
+          ['@lsp.type.component.vue'] = { fg = colors.sapphire },
+          ['@tag.tsx'] = { fg = colors.sapphire },
           WinSeparator = { fg = colors.overlay0 },
           SnacksIndentScope = { fg = colors.lavender },
         }

@@ -39,7 +39,11 @@ if ts then
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
       vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-      vim.wo.foldmethod = 'expr'
+
+      local keep_indent_fmt = {'vimdoc'}
+      if not vim.tbl_contains(keep_indent_fmt, lang) then
+        vim.wo.foldmethod = 'expr'
+      end
     end,
   })
 end
