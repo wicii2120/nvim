@@ -9,9 +9,7 @@ vim.cmd.cabbrev('Qa', 'qa')
 vim.cmd.cabbrev('QA', 'qa')
 vim.cmd.cabbrev('Q', 'q')
 
--- Save file
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
-vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<c-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy.nvim' })
 
@@ -31,15 +29,6 @@ vim.keymap.set(
   '<A-k>',
   ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv",
   { desc = 'Move Up' }
-)
-
--- Clear search, diff update and redraw
--- taken from runtime/lua/_editor.lua
-vim.keymap.set(
-  'n',
-  '<leader>ur',
-  '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
-  { desc = 'Redraw / Clear hlsearch / Diff Update' }
 )
 
 -- Add undo break-points
