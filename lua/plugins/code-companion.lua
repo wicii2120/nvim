@@ -1,3 +1,4 @@
+---@module 'codecompanion'
 return {
   'olimorris/codecompanion.nvim',
   lazy = false,
@@ -5,19 +6,18 @@ return {
     'nvim-lua/plenary.nvim',
   },
   opts = {
-    ignore_warnings = true,
-    strategies = {
+    interactions = {
       chat = {
         adapter = {
           name = 'copilot',
-          model = 'claude-opus-4.5',
+          model = 'claude-haiku-4.5',
         },
         tools = {
           opts = {
             default_tools = {
-              'full_stack_dev',
-            },
-          },
+              'full_stack_dev'
+            }
+          }
         },
         keymaps = {
           send = {
@@ -29,11 +29,18 @@ return {
           },
           close = false,
         },
+        variables = {
+          buffer = {
+            opts = {
+              default_params = 'diff',
+            },
+          },
+        },
       },
       inline = {
         adapter = {
           name = 'copilot',
-          model = 'claude-haiku-4.5',
+          model = 'gemini-3-flash-preview',
         },
         tools = {
           opts = {
@@ -47,13 +54,25 @@ return {
     display = {
       chat = {
         window = {
-          layout = 'float',
-          height = 0.9,
-          width = 0.9,
+          width = 0.3,
           opts = {
             conceallevel = 3,
           },
         },
+      },
+      diff = {
+        provider = 'mini_diff',
+      },
+    },
+    adapters = {
+      acp = {
+        codex = function()
+          return require('codecompanion.adapters').extend('codex', {
+            defaults = {
+              auth_method = 'chatgpt', -- "openai-api-key"|"codex-api-key"|"chatgpt"
+            },
+          })
+        end,
       },
     },
   },
@@ -63,17 +82,10 @@ return {
       ft = { 'markdown', 'codecompanion' },
     },
   },
-  config = function(_, opts)
-    local spinner = require('plugins.code-companion.spinner')
-    spinner:init()
-    require('codecompanion').setup(opts)
-  end,
   keys = {
     {
-      '<leader>ac',
-      function()
-        require('codecompanion').toggle()
-      end,
+      '<c-/>',
+      '<cmd>CodeCompanionChat Toggle<cr>',
       desc = 'Toggle Code Companion Chat (float)',
     },
   },

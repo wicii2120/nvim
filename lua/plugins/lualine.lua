@@ -12,8 +12,9 @@ return {
     enabled = true,
     dependencies = { 'folke/noice.nvim', 'folke/sidekick.nvim' },
     opts = function()
-      local noice = require('noice')
+      -- local noice = require('noice')
       local sidekick = require('sidekick.status')
+      local codecompanion = require('plugins.code-companion.lualine-component')
 
       return {
         options = {
@@ -30,7 +31,7 @@ return {
           always_show_tabline = false,
           globalstatus = true,
           refresh = {
-            statusline = 1000,
+            statusline = 150,
             tabline = 1000,
             winbar = 1000,
             refresh_time = 16, -- ~60fps
@@ -110,6 +111,7 @@ return {
                 return 'Special'
               end,
             },
+            codecompanion,
           },
           lualine_x = {
             {
@@ -118,7 +120,7 @@ return {
                 return get_recording_state() ~= nil
               end,
             },
-            { noice.api.status.search.get, cond = noice.api.status.search.has },
+            -- { noice.api.status.search.get, cond = noice.api.status.search.has },
             'filetype',
             'fileformat',
           },

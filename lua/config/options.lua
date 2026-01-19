@@ -19,7 +19,6 @@ vim.o.foldlevel = 20
 vim.o.foldmethod = 'indent'
 vim.o.ignorecase = true     -- Ignore case
 vim.o.inccommand = 'split'  -- preview incremental substitute
-vim.o.jumpoptions = 'clean'
 vim.o.laststatus = 3        -- global statusline
 vim.o.linebreak = true      -- Wrap lines at convenient points
 vim.o.list = true           -- Show some invisible characters (tabs...
@@ -88,4 +87,9 @@ end, {})
 -- vim.o.tabline = '%!v:lua.my_tab_line()'
 
 -- cd to current file
-vim.cmd([[cabbrev cdd cd %:h]])
+vim.cmd[[cabbrev cdd cd %:h]]
+vim.cmd[[cabbrev bb lua Snacks.bufdelete()]]
+
+vim.cmd[[hi link netrwMarkFile Visual]]
+
+vim.cmd[=[set isfname+=@-@,(,),[,]]=]

@@ -39,10 +39,10 @@ return {
         },
         view = 'split',
         opts = {
-          enter = true,
+          enter = false,
           merge = false,
-        }
-      }
+        },
+      },
     },
     ---@type table<string, NoiceViewOptions>
     views = {
@@ -57,7 +57,7 @@ return {
         border = {
           padding = { 0, 1 },
           style = 'rounded',
-        }
+        },
       },
       split = {
         win_options = {

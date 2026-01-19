@@ -1,6 +1,5 @@
 return {
   'nvim-mini/mini.surround',
-  enabled = false,
   opts = {
     n_lines = 100,
     mappings = {
