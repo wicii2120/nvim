@@ -93,3 +93,4 @@ vim.cmd[[cabbrev bb lua Snacks.bufdelete()]]
 vim.cmd[[hi link netrwMarkFile Visual]]
 
 vim.cmd[=[set isfname+=@-@,(,),[,]]=]
+vim.cmd[[packadd cfilter]]

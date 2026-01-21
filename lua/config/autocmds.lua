@@ -85,7 +85,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             lines = lines,
             efm = efm,
           })
-          vim.cmd('copen')
+          vim.cmd('copen | stopi')
         end)
       end, { bar = true })
     end
