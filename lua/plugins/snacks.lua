@@ -22,6 +22,11 @@ return {
                         }
                     },
                     git_diff = {},
+                    smart = {
+                        matcher = {
+                            cwd_bonus = false,
+                        }
+                    }
                 },
                 previewers = {
                     diff = {
@@ -112,7 +117,7 @@ return {
         keys = {
             -- Top Pickers & Explorer
             { '<leader><space>', function() Snacks.picker.smart() end,                                   desc = 'Smart Find Files', },
-            { '<leader>e',       function() Snacks.explorer({ follow_file = false }) end,                desc = 'File Explorer', },
+            { '<leader>e',       function() Snacks.explorer() end,                                       desc = 'File Explorer', },
             -- find
             { '<leader>fe',      function() Snacks.explorer.reveal() end,                                desc = 'Reveal File', },
             { '<leader>fb',      function() Snacks.picker.buffers() end,                                 desc = 'Listed Buffers', },

@@ -1,14 +1,20 @@
 vim.keymap.set('i', '<s-cr>', '<c-o>O')
 vim.keymap.set('i', '<d-cr>', '<c-o>o')
+vim.keymap.set('i', '<c-cr>', '<c-o>o')
 
+vim.keymap.set('v', '<m-c>', '"+y', { desc = 'Copy to system clipboard' })
+vim.keymap.set('n', '<m-c>', '"+yy', { desc = 'Copy line to system clipboard' })
 vim.keymap.set('v', '<d-c>', '"+y', { desc = 'Copy to system clipboard' })
 vim.keymap.set('n', '<d-c>', '"+yy', { desc = 'Copy line to system clipboard' })
+
+vim.keymap.set('c', '<c-a>', '<c-b>')
 
 -- Quit
 vim.cmd.cabbrev('Qa', 'qa')
 vim.cmd.cabbrev('QA', 'qa')
 vim.cmd.cabbrev('Q', 'q')
 
+vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<m-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy.nvim' })
