@@ -22,11 +22,6 @@ return {
                         }
                     },
                     git_diff = {},
-                    smart = {
-                        matcher = {
-                            cwd_bonus = false,
-                        }
-                    }
                 },
                 previewers = {
                     diff = {
