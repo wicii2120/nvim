@@ -29,11 +29,25 @@ return {
                         },
                     },
                 },
+                tools = {
+                    ['read_file'] = {
+                        opts = {
+                            require_approval_before = false,
+                        },
+                    },
+                },
             },
             inline = {
                 adapter = {
                     name = 'copilot',
                     model = 'claude-haiku-4.5',
+                },
+                tools = {
+                    ['read_file'] = {
+                        opts = {
+                            require_approval_before = false,
+                        },
+                    },
                 },
             },
         },
@@ -44,12 +58,10 @@ return {
                     opts = {
                         conceallevel = 3,
                         number = false,
+                        relativenumber = false,
                         signcolumn = 'no',
                     },
                 },
-            },
-            diff = {
-                provider = 'mini_diff',
             },
         },
         adapters = {
@@ -74,12 +86,12 @@ return {
         {
             '<c-_>',
             '<cmd>CodeCompanionChat Toggle<cr>',
-            desc = 'Toggle Code Companion Chat (float)',
+            desc = 'Toggle Code Companion Chat',
         },
         {
             '<c-/>',
             '<cmd>CodeCompanionChat Toggle<cr>',
-            desc = 'Toggle Code Companion Chat (float)',
+            desc = 'Toggle Code Companion Chat',
         },
     },
 }

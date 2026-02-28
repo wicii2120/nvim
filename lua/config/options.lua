@@ -49,6 +49,7 @@ vim.opt.fillchars = {
   diff = '╱',
   eob = '~',
 }
+vim.o.completeopt = 'fuzzy,menuone,noselect,popup'
 vim.opt.sessionoptions = {
   'buffers',
   'curdir',

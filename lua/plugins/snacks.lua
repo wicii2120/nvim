@@ -32,6 +32,24 @@ return {
                         builtin = false,
                     },
                 },
+                win = {
+                    input = {
+                        keys = {
+                            ['<c-l>'] = {
+                                'loclist',
+                                mode = {'n','i'}
+                            }
+                        }
+                    },
+                    list = {
+                        keys = {
+                            ['<c-l>'] = {
+                                'loclist',
+                            }
+                        }
+
+                    }
+                }
             },
             explorer = {
                 enabled = true,

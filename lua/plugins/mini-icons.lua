@@ -17,6 +17,7 @@ return {
       ['drizzle.config.ts'] = { glyph = '', hl = 'MiniIconsGreen' },
       ['.oxlintrc.json'] = { glyph = '', hl = 'MiniIconsOrange' },
       ['README.md'] = { glyph = '', hl = 'MiniIconsGray' },
+      ['deno.json'] = { glyph = '', hl = 'MiniIconsGreen' },
     }
 
     for _, name in ipairs(prettier) do

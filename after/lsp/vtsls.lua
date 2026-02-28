@@ -1,35 +1,41 @@
 local vue_language_server_path = vim.fn.expand('$MASON/packages')
-  .. '/vue-language-server'
-  .. '/node_modules/@vue/language-server'
+    .. '/vue-language-server'
+    .. '/node_modules/@vue/language-server'
 local vue_plugin = {
-  name = '@vue/typescript-plugin',
-  location = vue_language_server_path,
-  languages = { 'vue' },
-  configNamespace = 'typescript',
+    name = '@vue/typescript-plugin',
+    location = vue_language_server_path,
+    languages = { 'vue' },
+    configNamespace = 'typescript',
 }
 
 ---@class config: vim.lsp.Config
 return {
-  filetypes = { 'vue' },
-  settings = {
-    vtsls = {
-      tsserver = {
-        globalPlugins = {
-          vue_plugin,
+    filetypes = {
+        'vue',
+        'typescript',
+        'javascript',
+        'typescriptreact',
+        'javascriptreact',
+    },
+    settings = {
+        vtsls = {
+            tsserver = {
+                globalPlugins = {
+                    vue_plugin,
+                },
+            },
         },
-      },
+        typescript = {
+            suggest = {
+                autoImports = true,
+                completeFunctionCalls = false,
+            },
+        },
+        javascript = {
+            suggest = {
+                autoImports = true,
+                completeFunctionCalls = false,
+            },
+        },
     },
-    typescript = {
-      suggest = {
-        autoImports = true,
-        completeFunctionCalls = false,
-      },
-    },
-    javascript = {
-      suggest = {
-        autoImports = true,
-        completeFunctionCalls = false,
-      },
-    },
-  },
 }

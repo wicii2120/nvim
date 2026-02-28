@@ -14,7 +14,6 @@ return {
     },
     { 'bydlw98/blink-cmp-env' },
   },
-  event = { 'InsertEnter', 'CmdlineEnter' },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = function()
