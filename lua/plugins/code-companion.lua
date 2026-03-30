@@ -10,7 +10,7 @@ return {
             chat = {
                 adapter = {
                     name = 'copilot',
-                    model = 'claude-haiku-4.5',
+                    model = 'gpt-5.4',
                 },
                 keymaps = {
                     send = {
