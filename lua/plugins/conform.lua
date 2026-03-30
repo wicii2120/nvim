@@ -26,7 +26,7 @@ return {
             }
 
             for _, ft in ipairs(oxfmt_ft) do
-                formatters_by_ft[ft] = { 'prettier' }
+                formatters_by_ft[ft] = { 'oxfmt' }
             end
 
             ---@type conform.setupOpts
