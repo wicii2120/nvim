@@ -1,4 +1,8 @@
 ---@module 'codecompanion'
+local function is_gpt_54_model(model)
+    return model == 'gpt-5.4' or model == 'gpt-5.4-mini'
+end
+
 return {
     'olimorris/codecompanion.nvim',
     lazy = false,
@@ -10,7 +14,7 @@ return {
             chat = {
                 adapter = {
                     name = 'copilot',
-                    model = 'gpt-5.4',
+                    model = 'gpt-5.4-mini',
                 },
                 keymaps = {
                     send = {
@@ -40,7 +44,7 @@ return {
             inline = {
                 adapter = {
                     name = 'copilot',
-                    model = 'claude-haiku-4.5',
+                    model = 'gpt-5.4-mini',
                 },
                 tools = {
                     ['read_file'] = {
@@ -65,6 +69,28 @@ return {
             },
         },
         adapters = {
+            http = {
+                copilot = function()
+                    return require('codecompanion.adapters').extend('copilot', {
+                        schema = {
+                            top_p = {
+                                enabled = function(self)
+                                    local model = self.schema.model.default
+                                    if type(model) == 'function' then
+                                        model = model()
+                                    end
+
+                                    if is_gpt_54_model(model) then
+                                        return false
+                                    end
+
+                                    return not vim.startswith(model, 'o1')
+                                end,
+                            },
+                        },
+                    })
+                end,
+            },
             acp = {
                 codex = function()
                     return require('codecompanion.adapters').extend('codex', {
