@@ -34,6 +34,11 @@ return {
                     },
                 },
                 tools = {
+                    ['grep_search'] = {
+                        opts = {
+                            require_approval_before = false,
+                        },
+                    },
                     ['read_file'] = {
                         opts = {
                             require_approval_before = false,
@@ -48,6 +53,11 @@ return {
                 },
                 tools = {
                     ['read_file'] = {
+                        opts = {
+                            require_approval_before = false,
+                        },
+                    },
+                    ['grep_search'] = {
                         opts = {
                             require_approval_before = false,
                         },
