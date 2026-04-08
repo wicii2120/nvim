@@ -6,12 +6,81 @@ local get_recording_state = function()
   return nil
 end
 
+local tab_name_group = vim.api.nvim_create_augroup('lualine_tab_name_persistence', { clear = true })
+
+local get_tab_name_state_path = function()
+  local ok, persistence = pcall(require, 'persistence')
+  if not ok then
+    return nil
+  end
+
+  local session_path = persistence.current()
+  if session_path == nil or session_path == '' then
+    return nil
+  end
+
+  return session_path:gsub('%.vim$', '.tabs.json')
+end
+
+local save_tab_names = function()
+  local path = get_tab_name_state_path()
+  if path == nil then
+    return
+  end
+
+  local tab_names = {}
+  for index, tabpage in ipairs(vim.api.nvim_list_tabpages()) do
+    local ok, name = pcall(vim.api.nvim_tabpage_get_var, tabpage, 'tabname')
+    tab_names[index] = ok and name or vim.NIL
+  end
+
+  vim.fn.writefile({ vim.json.encode(tab_names) }, path)
+end
+
+local restore_tab_names = function()
+  local path = get_tab_name_state_path()
+  if path == nil or vim.fn.filereadable(path) == 0 then
+    return
+  end
+
+  local ok, tab_names = pcall(vim.json.decode, table.concat(vim.fn.readfile(path), '\n'))
+  if not ok or type(tab_names) ~= 'table' then
+    return
+  end
+
+  local tabpages = vim.api.nvim_list_tabpages()
+  for index, name in ipairs(tab_names) do
+    local tabpage = tabpages[index]
+    if tabpage ~= nil then
+      if name == vim.NIL or name == '' then
+        pcall(vim.api.nvim_tabpage_del_var, tabpage, 'tabname')
+      else
+        vim.api.nvim_tabpage_set_var(tabpage, 'tabname', name)
+      end
+    end
+  end
+
+  vim.cmd('redrawtabline')
+end
+
 return {
   {
     'nvim-lualine/lualine.nvim',
     enabled = true,
     dependencies = { 'folke/noice.nvim', 'folke/sidekick.nvim' },
     opts = function()
+      vim.api.nvim_create_autocmd('User', {
+        group = tab_name_group,
+        pattern = 'PersistenceSavePre',
+        callback = save_tab_names,
+      })
+
+      vim.api.nvim_create_autocmd('User', {
+        group = tab_name_group,
+        pattern = 'PersistenceLoadPost',
+        callback = restore_tab_names,
+      })
+
       -- local noice = require('noice')
       local sidekick = require('sidekick.status')
       local codecompanion = require('plugins.code-companion.lualine-component')
