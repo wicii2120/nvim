@@ -1,6 +1,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
+vim.o.shell = '/opt/homebrew/bin/fish'
+
 vim.o.wrap = true
 vim.o.spell = false
 vim.o.winborder = 'rounded'

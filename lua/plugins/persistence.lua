@@ -8,9 +8,9 @@ return {
     {
       '<leader>qs',
       function()
-        require('persistence').load()
+        require('persistence').save()
       end,
-      desc = 'Restore Session',
+      desc = 'Save Session',
     },
     {
       '<leader>qS',
