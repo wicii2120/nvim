@@ -1,6 +1,10 @@
 return {
   'saghen/blink.cmp',
-  build = 'cargo build --release',
+  build = function()
+    -- build the fuzzy matcher, wait up to 60 seconds
+    -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+    require('blink.cmp').build():wait(60000)
+  end,
   opts_extend = {
     'sources.completion.enabled_providers',
     'sources.compat',
@@ -12,7 +16,7 @@ return {
       optional = true, -- make optional so it's only enabled if any extras need it
       opts = {},
     },
-    { 'bydlw98/blink-cmp-env' },
+    { 'saghen/blink.lib'},
   },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -73,24 +77,13 @@ return {
         },
       },
       sources = {
-        default = { 'lsp', 'snippets', 'buffer', 'path', 'env' },
+        default = { 'lsp', 'snippets', 'buffer', 'path' },
 
         providers = {
           lsp = {
             fallbacks = {},
             async = false,
             timeout_ms = 2000,
-          },
-
-          env = {
-            name = 'Env',
-            module = 'blink-cmp-env',
-            --- @type blink-cmp-env.Options
-            opts = {
-              item_kind = require('blink.cmp.types').CompletionItemKind.Variable,
-              show_braces = false,
-              show_documentation_window = true,
-            },
           },
         },
       },

@@ -21,5 +21,26 @@ return {
       },
       severity_sort = true,
     })
+
+    local enabled_lsps = {
+        'lua_ls',
+        'bashls',
+        'fish_lsp',
+        'yamlls',
+        'tombi',
+        'ty',
+        'tailwindcss',
+        'cssls',
+        'jsonls',
+        'oxlint',
+        'gopls',
+        'vtsls',
+        'vue_ls',
+        'docker_language_server'
+    }
+
+    for _, lsp in ipairs(enabled_lsps) do
+        vim.lsp.enable(lsp)
+    end
   end,
 }

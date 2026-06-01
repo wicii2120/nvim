@@ -7,7 +7,7 @@ return {
     }),
     }),
 
-    s('if asign err', {
+    s('if assign err', {
         t('if '), i(1, 'err'), t(' := '), i(2, 'expr'), t({ '; err != nil {',
         '\t' }), i(0), t({ '',
         '}'

@@ -2,6 +2,7 @@
 return {
     'olimorris/codecompanion.nvim',
     lazy = false,
+    enabled = false,
     dependencies = {
         'nvim-lua/plenary.nvim',
     },
@@ -9,8 +10,7 @@ return {
         interactions = {
             chat = {
                 adapter = {
-                    name = 'copilot',
-                    model = 'gpt-5.4-mini',
+                    name = 'openrouter',
                 },
                 keymaps = {
                     send = {
@@ -44,8 +44,7 @@ return {
             },
             inline = {
                 adapter = {
-                    name = 'copilot',
-                    model = 'gpt-5.4-mini',
+                    name = 'openrouter',
                 },
                 tools = {
                     ['read_file'] = {
@@ -72,6 +71,40 @@ return {
                         signcolumn = 'no',
                     },
                 },
+            },
+        },
+        adapters = {
+            acp = {
+                codex = function()
+                    return require('codecompanion.adapters').extend('codex', {
+                        defaults = {
+                            auth_method = 'chatgpt', -- "openai-api-key"|"codex-api-key"|"chatgpt"
+                        },
+                    })
+                end,
+            },
+            http = {
+                openrouter = function()
+                    return require('codecompanion.adapters').extend('openai', {
+                        name = 'openrouter',
+                        formatted_name = 'OpenRouter',
+                        url = 'https://openrouter.ai/api/v1/chat/completions',
+                        env = {
+                            api_key = 'OPENROUTER_API_KEY',
+                        },
+                        headers = {
+                            ['Content-Type'] = 'application/json',
+                            Authorization = 'Bearer ${api_key}',
+                            ['HTTP-Referer'] = 'https://github.com/olimorris/codecompanion.nvim',
+                            ['X-Title'] = 'CodeCompanion',
+                        },
+                        schema = {
+                            model = {
+                                default = '@preset/deepseek-v4-flash',
+                            },
+                        },
+                    })
+                end,
             },
         },
     },

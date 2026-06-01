@@ -2,6 +2,7 @@ return {
   {
     'mason-org/mason.nvim',
     cmd = 'Mason',
+    enabled = false,
     opts = {
       ui = {
         border = 'rounded',
@@ -10,6 +11,7 @@ return {
   },
   {
     'mason-org/mason-lspconfig.nvim',
+    enabled = false,
     opts = {},
   },
 }
