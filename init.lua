@@ -4,5 +4,6 @@ require('config.options')
 require('config.lazy')
 require('config.autocmds')
 require('config.keymaps')
+require('config.filetype')
 
-vim.cmd([[colorscheme catppuccin-mocha]])
+vim.cmd.colorscheme('catppuccin-mocha')

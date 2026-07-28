@@ -97,3 +97,5 @@ vim.cmd[[hi link netrwMarkFile Visual]]
 
 vim.cmd[=[set isfname+=@-@,(,),[,]]=]
 vim.cmd[[packadd cfilter]]
+
+vim.g.netrw_liststyle = 3
