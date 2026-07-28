@@ -6,7 +6,6 @@ vim.pack.add({
 })
 
 local cmp = require('blink.cmp')
-cmp.build():pwait()
 cmp.setup({
     completion = {
         -- use mini.icons for menu icons

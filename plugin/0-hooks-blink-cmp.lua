@@ -1,0 +1,5 @@
+require('vim-pack-hooks').build('blink.cmp', function ()
+    vim.cmd.packadd('blink.lib')
+    vim.cmd.packadd('blink.cmp')
+    require('blink.cmp').build():pwait()
+end)
