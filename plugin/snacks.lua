@@ -1,0 +1,324 @@
+vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
+
+require('snacks').setup({
+    picker = {
+        sources = {
+            files = {
+                hidden = true,
+            },
+            explorer = {
+                hidden = true,
+                win = {
+                    list = {
+                        keys = {
+                            ['.'] = 'tcd',
+                            ['<c-c>'] = 'cd',
+                        },
+                    },
+                },
+            },
+            git_diff = {},
+        },
+        previewers = {
+            diff = {
+                builtin = false,
+                cmd = { 'delta' },
+            },
+            git = {
+                builtin = false,
+            },
+        },
+        win = {
+            input = {
+                keys = {
+                    ['<c-l>'] = {
+                        'loclist',
+                        mode = { 'n', 'i' },
+                    },
+                },
+            },
+            list = {
+                keys = {
+                    ['<c-l>'] = {
+                        'loclist',
+                    },
+                },
+            },
+        },
+    },
+    explorer = {
+        enabled = true,
+        replace_netrw = false,
+        trash = true,
+    },
+    lazygit = {
+        configure = true,
+    },
+    scope = { enabled = false },
+    terminal = {
+        enabled = true,
+    },
+    toggle = { enabled = true },
+    words = { enabled = true },
+    bufdelete = { enabled = true },
+    indent = {
+        enabled = true,
+        animate = {
+            enabled = false,
+        },
+    },
+    image = {
+        enabled = true,
+        doc = {
+            max_height = 3,
+        },
+        convert = {
+            notify = false, -- show a notification on error
+            ---@type snacks.image.args
+            mermaid = function()
+                local theme = vim.o.background == 'light' and 'neutral'
+                    or 'dark'
+                return {
+                    '-i',
+                    '{src}',
+                    '-o',
+                    '{file}',
+                    '-b',
+                    'transparent',
+                    '-t',
+                    theme,
+                    '-s',
+                    '{scale}',
+                }
+            end,
+            ---@type table<string,snacks.image.args>
+            magick = {
+                default = { '{src}[0]', '-scale', '1920x1080>' }, -- default for rater images
+                vector = { '-density', 192, '{src}[{page}]' }, -- used by vector images like svg
+                math = { '-density', 192, '{src}[{page}]', '-trim' },
+                pdf = {
+                    '-density',
+                    192,
+                    '{src}[{page}]',
+                    '-background',
+                    'white',
+                    '-alpha',
+                    'remove',
+                    '-trim',
+                },
+            },
+        },
+        math = {
+            enabled = true,
+        },
+        icons = {
+            math = '󰪚 ',
+            chart = '󰄧 ',
+            image = ' ',
+        },
+    },
+    bigfile = { enabled = true },
+    quickfile = { enabled = true },
+    input = { enabled = true },
+    debug = { enabled = true },
+})
+
+-- Top Pickers & Explorer
+vim.keymap.set('n', '<leader><space>', function()
+    Snacks.picker.smart()
+end, { desc = 'Smart Find Files' })
+vim.keymap.set('n', '<leader>e', function()
+    Snacks.explorer()
+end, { desc = 'File Explorer' })
+-- find
+vim.keymap.set('n', '<leader>fe', function()
+    Snacks.explorer.reveal()
+end, { desc = 'Reveal File' })
+vim.keymap.set('n', '<leader>fb', function()
+    Snacks.picker.buffers()
+end, { desc = 'Listed Buffers' })
+vim.keymap.set('n', '<leader>fB', function()
+    Snacks.picker.buffers({ hidden = true })
+end, { desc = 'Hidden Buffers' })
+vim.keymap.set('n', '<leader>fc', function()
+    Snacks.picker.files({ cwd = vim.fn.stdpath('config') })
+end, { desc = 'Find Config File' })
+vim.keymap.set('n', '<leader>ff', function()
+    Snacks.picker.files()
+end, { desc = 'Find Files' })
+vim.keymap.set('n', '<leader>fg', function()
+    Snacks.picker.git_files()
+end, { desc = 'Find Git Files' })
+vim.keymap.set('n', '<leader>fp', function()
+    Snacks.picker.projects()
+end, { desc = 'Projects' })
+vim.keymap.set('n', '<leader>fr', function()
+    Snacks.picker.recent()
+end, { desc = 'Recent' })
+-- git
+vim.keymap.set('n', '<leader>gl', function()
+    Snacks.picker.git_log()
+end, { desc = 'Git Log' })
+vim.keymap.set('n', '<leader>gL', function()
+    Snacks.picker.git_log_line()
+end, { desc = 'Git Log Line' })
+vim.keymap.set('n', '<leader>gs', function()
+    Snacks.picker.git_status()
+end, { desc = 'Git Status' })
+vim.keymap.set('n', '<leader>gS', function()
+    Snacks.picker.git_stash()
+end, { desc = 'Git Stash' })
+vim.keymap.set('n', '<leader>gd', function()
+    Snacks.picker.git_diff()
+end, { desc = 'Git Diff (Hunks)' })
+vim.keymap.set('n', '<leader>gf', function()
+    Snacks.picker.git_log_file()
+end, { desc = 'Git Log File' })
+vim.keymap.set('n', '<leader>gb', function()
+    Snacks.git.blame_line()
+end, { desc = 'Git Blame Line' })
+-- gh
+vim.keymap.set('n', '<leader>gi', function()
+    Snacks.picker.gh_issue()
+end, { desc = 'GitHub Issues (open)' })
+vim.keymap.set('n', '<leader>gI', function()
+    Snacks.picker.gh_issue({ state = 'all' })
+end, { desc = 'GitHub Issues (all)' })
+vim.keymap.set('n', '<leader>gp', function()
+    Snacks.picker.gh_pr()
+end, { desc = 'GitHub Pull Requests (open)' })
+vim.keymap.set('n', '<leader>gP', function()
+    Snacks.picker.gh_pr({ state = 'all' })
+end, { desc = 'GitHub Pull Requests (all)' })
+-- Grep
+vim.keymap.set('n', '<leader>sb', function()
+    Snacks.picker.lines()
+end, { desc = 'Buffer Lines' })
+vim.keymap.set('n', '<leader>sB', function()
+    Snacks.picker.grep_buffers()
+end, { desc = 'Grep Open Buffers' })
+vim.keymap.set('n', '<leader>sg', function()
+    Snacks.picker.grep()
+end, { desc = 'Grep' })
+vim.keymap.set({ 'n', 'x' }, '<leader>sw', function()
+    Snacks.picker.grep_word()
+end, { desc = 'Visual selection or word' })
+-- search
+vim.keymap.set('n', '<leader>n', function()
+    Snacks.picker.notifications()
+end, { desc = 'Notifications' })
+vim.keymap.set('n', '<leader>sa', function()
+    Snacks.picker.autocmds()
+end, { desc = 'Autocmds' })
+vim.keymap.set('n', '<leader>sC', function()
+    Snacks.picker.commands()
+end, { desc = 'Commands' })
+vim.keymap.set('n', '<leader>sD', function()
+    Snacks.picker.diagnostics()
+end, { desc = 'Diagnostics' })
+vim.keymap.set('n', '<leader>sd', function()
+    Snacks.picker.diagnostics_buffer()
+end, { desc = 'Buffer Diagnostics' })
+vim.keymap.set('n', '<leader>sh', function()
+    Snacks.picker.help()
+end, { desc = 'Help Pages' })
+vim.keymap.set('n', '<leader>sH', function()
+    Snacks.picker.highlights()
+end, { desc = 'Highlights' })
+vim.keymap.set('n', '<leader>si', function()
+    Snacks.picker.icons()
+end, { desc = 'Icons' })
+vim.keymap.set('n', '<leader>sj', function()
+    Snacks.picker.jumps()
+end, { desc = 'Jumps' })
+vim.keymap.set('n', '<leader>sk', function()
+    Snacks.picker.keymaps()
+end, { desc = 'Keymaps' })
+vim.keymap.set('n', '<leader>sm', function()
+    Snacks.picker.marks()
+end, { desc = 'Marks' })
+vim.keymap.set('n', '<leader>sM', function()
+    Snacks.picker.man()
+end, { desc = 'Man Pages' })
+vim.keymap.set('n', '<leader>sR', function()
+    Snacks.picker.resume()
+end, { desc = 'Resume' })
+vim.keymap.set('n', '<leader>su', function()
+    Snacks.picker.undo()
+end, { desc = 'Undo History' })
+-- todo picker (folded from todo-comments `specs` injection into snacks)
+vim.keymap.set('n', '<leader>sT', function()
+    Snacks.picker.todo_comments()
+end, { desc = 'Todo' })
+-- LSP
+vim.keymap.set('n', '<leader>ss', function()
+    Snacks.picker.lsp_workspace_symbols()
+end, { desc = 'LSP Workspace Symbols' })
+
+vim.keymap.set({ 'n', 't' }, '<leader>ft', function()
+    Snacks.terminal(
+        [[zsh -l]],
+        { win = { position = 'float', border = 'rounded' } }
+    )
+end, { desc = 'Terminal' })
+
+vim.keymap.set('n', '<leader>.', function()
+    Snacks.scratch()
+end, { desc = 'Toggle Scratch Buffer' })
+vim.keymap.set('n', '<leader>S', function()
+    Snacks.scratch.select()
+end, { desc = 'Select Scratch Buffer' })
+
+vim.keymap.set('n', '[w', function()
+    Snacks.words.jump(-vim.v.count1, true)
+end, { desc = 'Previous Word' })
+vim.keymap.set('n', ']w', function()
+    Snacks.words.jump(vim.v.count1, true)
+end, { desc = 'Next Word' })
+
+vim.keymap.set('n', '<leader>z', function()
+    Snacks.picker.zoxide()
+end, { desc = 'Zoxide' })
+
+-- toggles and LSP-aware keymaps (from lazy `config` body)
+Snacks.toggle.diagnostics():map('<leader>ud')
+Snacks.toggle.treesitter():map('<leader>ut')
+if vim.lsp.inlay_hint then
+    Snacks.toggle.inlay_hints():map('<leader>uh')
+end
+
+if vim.fn.executable('lazygit') == 1 then
+    vim.keymap.set('n', '<leader>gg', function()
+        Snacks.lazygit()
+    end, { desc = 'Lazygit' })
+end
+
+Snacks.toggle.zoom():map('<leader>uz')
+Snacks.toggle.zen():map('<leader>uZ')
+
+-- Set keymap for buffers with a specific LSP client
+Snacks.keymap.set('n', '<leader>co', function()
+    vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+            only = { 'source.organizeImports' },
+            diagnostics = {},
+        },
+    })
+end, {
+    lsp = { name = 'vtsls' },
+    desc = 'Organize Imports',
+})
+
+Snacks.keymap.set('n', '<leader>co', function()
+    vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+            only = { 'source.organizeImports' },
+            diagnostics = {},
+        },
+    })
+end, {
+    lsp = { name = 'tsgo' },
+    desc = 'Organize Imports',
+})

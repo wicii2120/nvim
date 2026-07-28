@@ -17,8 +17,6 @@ vim.cmd.cabbrev('Q', 'q')
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<m-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 vim.keymap.set({ 'n', 'i', 'x', 'v' }, '<d-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
 
-vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy.nvim' })
-
 -- Move Lines
 vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
 vim.keymap.set('n', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
@@ -41,6 +39,7 @@ vim.keymap.set(
 vim.keymap.set('i', ',', ',<c-g>u')
 vim.keymap.set('i', '.', '.<c-g>u')
 vim.keymap.set('i', ';', ';<c-g>u')
+vim.keymap.set('i', ' ', ' <c-g>u')
 
 -- better indenting
 vim.keymap.set('x', '<', '<gv')

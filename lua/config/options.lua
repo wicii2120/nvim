@@ -66,34 +66,12 @@ vim.cmd([[set shortmess+=a]])
 vim.cmd([[set formatoptions-=t]])
 vim.cmd([[set formatoptions+=n1pro]])
 vim.opt.rulerformat = '%=%l,%v  %p%% '
-vim.api.nvim_create_user_command("DiffOrig", function()
-  local ft = vim.bo.filetype
-
-  vim.cmd("vert new")
-  vim.bo.buftype = "nofile"
-  vim.bo.bufhidden = "wipe"
-  vim.bo.swapfile = false
-  vim.bo.buflisted = false
-  if ft ~= "" then vim.bo.filetype = ft end
-
-  vim.cmd("read ++edit #")
-  vim.cmd("1delete _")
-
-  vim.cmd("diffthis")
-  vim.cmd("wincmd p")
-  vim.cmd("diffthis")
-end, {})
-
--- require('statusline')
--- vim.o.statusline = '%!v:lua.my_status_line()'
--- require('tabline')
--- vim.o.tabline = '%!v:lua.my_tab_line()'
 
 -- cd to current file
 vim.cmd[[cabbrev cdd cd %:h]]
 vim.cmd[[cabbrev bb lua Snacks.bufdelete()]]
 
-vim.cmd[[hi link netrwMarkFile Visual]]
+-- vim.cmd[[hi link netrwMarkFile Visual]]
 
 vim.cmd[=[set isfname+=@-@,(,),[,]]=]
 vim.cmd[[packadd cfilter]]

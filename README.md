@@ -1,1 +1,1 @@
-Based on [LazyVim](https://github.com/LazyVim/LazyVim).
+migrated to `vim.pack`
