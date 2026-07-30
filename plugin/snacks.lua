@@ -47,7 +47,7 @@ require('snacks').setup({
         },
     },
     explorer = {
-        enabled = true,
+        enabled = false,
         replace_netrw = false,
         trash = true,
     },
@@ -127,13 +127,6 @@ require('snacks').setup({
 vim.keymap.set('n', '<leader><space>', function()
     Snacks.picker.smart()
 end, { desc = 'Smart Find Files' })
-vim.keymap.set('n', '<leader>e', function()
-    Snacks.explorer()
-end, { desc = 'File Explorer' })
--- find
-vim.keymap.set('n', '<leader>fe', function()
-    Snacks.explorer.reveal()
-end, { desc = 'Reveal File' })
 vim.keymap.set('n', '<leader>fb', function()
     Snacks.picker.buffers()
 end, { desc = 'Listed Buffers' })
