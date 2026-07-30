@@ -1,5 +1,5 @@
 vim.pack.add({
-    { src = 'https://github.com/nvim-mini/mini.ai', version = 'stable' }
+    { src = 'https://github.com/nvim-mini/mini.ai' }
 })
 
 local ai = require('mini.ai')

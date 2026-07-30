@@ -8,15 +8,15 @@ vim.g.loaded_netrwPlugin = 1
 require('yazi').setup({
     open_for_directories = true,
     keymaps = {
-        show_help = '<f1>',
+        show_help = '<f2>',
     },
 })
 
-vim.keymap.set('n', '<leader>fe', function()
+vim.keymap.set('n', '<leader>ee', function()
     vim.cmd.Yazi()
 end, { desc = 'Open Yazi at the current file' })
 
-vim.keymap.set('n', '<leader>e', function()
+vim.keymap.set('n', '<leader>ew', function()
     vim.cmd.Yazi('cwd')
 end, { desc = 'Open Yazi in the current working directory' })
 

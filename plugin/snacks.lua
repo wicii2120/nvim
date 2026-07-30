@@ -56,7 +56,7 @@ require('snacks').setup({
     },
     scope = { enabled = false },
     terminal = {
-        enabled = true,
+        enabled = false,
     },
     toggle = { enabled = true },
     words = { enabled = true },
@@ -247,13 +247,6 @@ end, { desc = 'Todo' })
 vim.keymap.set('n', '<leader>ss', function()
     Snacks.picker.lsp_workspace_symbols()
 end, { desc = 'LSP Workspace Symbols' })
-
-vim.keymap.set({ 'n', 't' }, '<leader>ft', function()
-    Snacks.terminal(
-        [[zsh -l]],
-        { win = { position = 'float', border = 'rounded' } }
-    )
-end, { desc = 'Terminal' })
 
 vim.keymap.set('n', '<leader>.', function()
     Snacks.scratch()
