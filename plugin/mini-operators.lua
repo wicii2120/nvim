@@ -43,7 +43,7 @@ require('mini.operators').setup(
 
         -- Sort text
         sort = {
-            prefix = 'gs',
+            prefix = 'gS',
 
             -- Function which does the sort
             func = nil,

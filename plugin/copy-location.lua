@@ -2,7 +2,7 @@ if _G.MY == nil then
     _G.MY = {}
 end
 
-local function copy_location(start_pos, end_pos, selection_type)
+local function copy_location(start_pos, end_pos, selection_type, absolute)
     -- Positions are { line, 0-based byte column }.
     if
         start_pos[1] > end_pos[1]
@@ -14,6 +14,8 @@ local function copy_location(start_pos, end_pos, selection_type)
     local path = vim.api.nvim_buf_get_name(0)
     if path == '' then
         path = '[No Name]'
+    elseif not absolute then
+        path = vim.fn.fnamemodify(path, ':.') -- relative to cwd
     end
 
     local location
@@ -38,7 +40,17 @@ _G.MY.copy_location_operator = function(type)
     copy_location(
         vim.api.nvim_buf_get_mark(0, '['),
         vim.api.nvim_buf_get_mark(0, ']'),
-        type
+        type,
+        false
+    )
+end
+
+_G.MY.copy_location_operator_absolute = function(type)
+    copy_location(
+        vim.api.nvim_buf_get_mark(0, '['),
+        vim.api.nvim_buf_get_mark(0, ']'),
+        type,
+        true
     )
 end
 
@@ -47,7 +59,7 @@ vim.keymap.set('n', '<leader>y', function()
     return 'g@'
 end, {
     expr = true,
-    desc = 'Copy source range',
+    desc = 'Copy source range (relative)',
 })
 
 vim.keymap.set('n', '<leader>yy', function()
@@ -55,10 +67,26 @@ vim.keymap.set('n', '<leader>yy', function()
     return 'g@_'
 end, {
     expr = true,
-    desc = 'Copy source range',
+    desc = 'Copy source range (relative)',
 })
 
-vim.keymap.set('x', '<leader>y', function()
+vim.keymap.set('n', '<leader>Y', function()
+    vim.go.operatorfunc = 'v:lua.MY.copy_location_operator_absolute'
+    return 'g@'
+end, {
+    expr = true,
+    desc = 'Copy source range (absolute)',
+})
+
+vim.keymap.set('n', '<leader>YY', function()
+    vim.go.operatorfunc = 'v:lua.MY.copy_location_operator_absolute'
+    return 'g@_'
+end, {
+    expr = true,
+    desc = 'Copy source range (absolute)',
+})
+
+local function visual_copy_location(absolute)
     local mode = vim.fn.mode()
 
     -- getpos() columns are 1-based, unlike nvim_buf_get_mark().
@@ -72,10 +100,21 @@ vim.keymap.set('x', '<leader>y', function()
         or mode == '\22' and 'block'
         or 'char'
 
-    copy_location(start_pos, end_pos, selection_type)
+    copy_location(start_pos, end_pos, selection_type, absolute)
 
     return '<esc>'
+end
+
+vim.keymap.set('x', '<leader>y', function()
+    return visual_copy_location(false)
 end, {
     expr = true,
-    desc = 'Copy selected source range',
+    desc = 'Copy selected source range (relative)',
+})
+
+vim.keymap.set('x', '<leader>Y', function()
+    return visual_copy_location(true)
+end, {
+    expr = true,
+    desc = 'Copy selected source range (absolute)',
 })

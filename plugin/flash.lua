@@ -1,16 +1,11 @@
 vim.pack.add({ 'https://github.com/folke/flash.nvim' })
 
 require('flash').setup({
+    search = {
+        incremental = false,
+    },
     label = {
         uppercase = false,
-    },
-    jump = {
-        inclusive = false,
-    },
-    modes = {
-        char = {
-            enabled = false,
-        },
     },
 })
 
