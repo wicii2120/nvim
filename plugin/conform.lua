@@ -21,6 +21,7 @@ local formatters_by_ft = {
     python = { 'ruff' },
     go = { 'gofmt' },
     sh = { 'shfmt' },
+    nginx = { 'nginxfmt' },
 }
 
 for _, ft in ipairs(oxfmt_ft) do

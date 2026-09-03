@@ -9,6 +9,7 @@ require('yazi').setup({
     open_for_directories = true,
     keymaps = {
         show_help = '<f2>',
+        cycle_open_buffers = '<c-tab>'
     },
 })
 

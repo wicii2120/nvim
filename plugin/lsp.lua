@@ -35,6 +35,8 @@ local enabled_lsps = {
     'vtsls',
     'vue_ls',
     'docker_language_server',
+    'nginx_language_server',
+    'texlab'
 }
 
 for _, lsp in ipairs(enabled_lsps) do

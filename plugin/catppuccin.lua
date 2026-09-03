@@ -6,7 +6,7 @@ vim.pack.add({
 })
 
 require('catppuccin').setup({
-    flavour = 'mocha',
+    flavour = 'auto',
     dim_inactive = {
         enabled = true,
     },
@@ -33,4 +33,8 @@ require('catppuccin').setup({
         }
     end,
 })
+
+-- Load immediately (not at VimEnter) so plugins like lualine resolve their theme
+-- against an already-loaded flavour, and OS theme changes propagate from startup.
+vim.cmd.colorscheme('catppuccin-nvim')
 
